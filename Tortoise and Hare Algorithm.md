@@ -59,5 +59,3 @@ This technique is also used in **Floyd’s Cycle Detection Algorithm** to check 
 ✔ Detecting **cycles in a linked list** (Floyd’s Algorithm)  
 ✔ Finding the **starting point of a cycle**  
 ✔ Checking **looping behavior** in mathematical sequences (e.g., happy numbers)
-
-Would you like a visual step-by-step breakdown with an example? 🚀
