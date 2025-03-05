@@ -89,5 +89,3 @@ nums = [2,2,1,1,1,2,2]
 
 ✅ When a majority element **is guaranteed to exist**  
 ✅ When you need **O(n) time complexity** and **O(1) space complexity**
-
-🚀 **Let me know if you need any clarification!**
