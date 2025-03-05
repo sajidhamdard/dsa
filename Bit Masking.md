@@ -343,8 +343,3 @@ Expression:
 ✔ **Setting a bit (`|`)** – Used in enabling flags  
 ✔ **Clearing a bit (`& ~`)** – Used to turn off a setting  
 ✔ **Toggling a bit (`^`)** – Used in encryption, Gray codes
-
-Would you like to see a real-world coding problem using this? 🚀
-
-=============================================
-(num & 1) == 0 checks if number is even

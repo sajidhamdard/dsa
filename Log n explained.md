@@ -113,5 +113,3 @@ Let’s assume `n = 1,000,000`:
 | **O(log n)** | Grows **logarithmically** (halves input each time) |
 
 💡 **If an algorithm repeatedly reduces the problem size by a factor (like dividing by 2), its time complexity is O(log n).** 🚀
-
-Would you like any further clarification? 😊

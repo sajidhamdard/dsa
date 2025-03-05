@@ -102,5 +102,3 @@ public class BinarySearchRecursive {
 🔹 **Binary Search is an efficient search algorithm** with **O(log n)** complexity.  
 🔹 **Best used for sorted arrays** and large datasets.  
 🔹 **Can be implemented iteratively (better) or recursively (simpler).**  
-
-Would you like an example of **Binary Search on Strings or in a real-world application**? 😊
