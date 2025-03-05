@@ -120,5 +120,3 @@ public class FactorialLoop {
 🔹 **Prefer loops for simple iterations** (arrays, lists, sequences).  
 🔹 **Use recursion for problems with a recursive structure** (trees, graphs, divide-and-conquer).  
 🔹 **Use recursion when it improves readability**, but **convert to loops** when performance is critical.
-
-Would you like an example of a recursive vs. iterative **tree traversal**? 😊
