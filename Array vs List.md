@@ -68,5 +68,3 @@ System.out.println(list.get(1)); // Output: 20
 ✔ The size **changes frequently**.  
 ✔ You need **fast insertions/deletions (LinkedList)**.  
 ✔ You need **dynamic memory allocation**.
-
-Would you like a deeper comparison of **ArrayList vs LinkedList**? 😊
