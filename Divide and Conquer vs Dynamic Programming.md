@@ -85,5 +85,3 @@ public class FibonacciDP {
 ✔ The problem has **overlapping subproblems** (same calculations repeated).  
 ✔ Results of previous computations can be **stored and reused**.  
 ✔ Examples: **Fibonacci, Knapsack Problem, Shortest Path Problems.**
-
-Would you like an example of **Knapsack Problem using DP**? 😊
