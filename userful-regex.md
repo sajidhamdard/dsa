@@ -77,5 +77,35 @@
 ```regex
 \b(\w+)\s+\1\b
 ```
-- **Example**:  
+- **Example**:
+
+A commonly used **regex for validating emails** is:  
+
+```regex
+^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+```
+
+### 📌 Explanation:
+- `^` → Start of string
+- `[a-zA-Z0-9._%+-]+` → Local part (before `@`)
+  - Can contain letters, digits, dots (`.`), underscores (`_`), percent (`%`), plus (`+`), and hyphen (`-`).
+- `@` → Must have an `@` symbol
+- `[a-zA-Z0-9.-]+` → Domain name
+  - Can contain letters, digits, dots (`.`), and hyphens (`-`).
+- `\.` → Must have a dot (`.`) before the domain extension
+- `[a-zA-Z]{2,}` → Top-level domain (TLD) must have at least **2** letters (e.g., `.com`, `.org`, `.io`)
+- `$` → End of string
+
+### ✅ Valid Emails:
+- `test@example.com`
+- `user.name+tag@domain.co.in`
+- `abc123@xyz.org`
+
+### ❌ Invalid Emails:
+- `@example.com` ❌ (Missing local part)
+- `user@.com` ❌ (Invalid domain)
+- `user@domain,com` ❌ (Comma instead of `.`)
+
+💡 **Note**: While this regex covers most cases, **RFC 5322** allows even more complex emails, which are harder to validate using regex alone.
+
   - `"This is is a test"` → Matches `"is is"`
