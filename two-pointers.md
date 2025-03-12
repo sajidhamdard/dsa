@@ -101,5 +101,3 @@ Indices: 1, 5
 ✅ Efficient for **sorted** arrays.  
 ✅ Can be used in **search, partition, and optimization problems**.  
 ✅ Reduces **nested loops** to **linear time complexity** \(O(n)\).  
-
-Would you like another example, like **removing duplicates** or **finding triplets**? 🚀
