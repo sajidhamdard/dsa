@@ -65,3 +65,32 @@ if (res > Integer.MAX_VALUE) {
 ```
 
 ✅ **Always check limits before casting or doing arithmetic to avoid unexpected integer overflow!** 🚀
+
+#### **finding prime while skipping many numbers**
+```java
+boolean isPrime(int num) {
+   if (num < 2) return false;
+   if (num % 2 == 0 && num != 2) return false;
+   for (int i = 3; i * i <= num; i += 2) {  
+     if (num % i == 0) return false;  
+   }
+   return true;
+}
+```
+
+#### **Why Is It Faster?**
+1. **Reduces Iterations from O(n) → O(√n)**  
+   - Instead of checking `num` divisibility up to `num-1`, we **only check up to `√num`**.
+   - Example: If `num = 1000000`, instead of checking **999,998 numbers**, we only check **≈1000 numbers**.
+
+2. **Skips Even Numbers**  
+   - After checking `2`, we **only check odd numbers (`i += 2`)**.
+   - This reduces the number of iterations by half!
+
+#### **Time Complexity**
+- **Optimized Approach:** **O(√n)**  
+- **Example Comparison for `num = 10^9`**  
+  - **Brute Force:** ~1,000,000,000 iterations ❌  
+  - **Optimized:** ~31,622 iterations ✅ **(Much faster)**  
+
+---
