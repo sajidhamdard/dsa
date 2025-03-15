@@ -145,4 +145,4 @@ for (int i = 0; i < n; i++) {
 | **Primary Diagonal**   | `arr[i][i]`      | `{1, 5, 9}`   |
 | **Secondary Diagonal** | `arr[i][n-i-1]`  | `{3, 5, 7}`   |
 
-📌 **Diagonals are useful in matrix operations, image processing, and mathematical computations!** 🚀
+📌 **Diagonals are useful in matrix operations, image processing, and mathematical computations!** 
