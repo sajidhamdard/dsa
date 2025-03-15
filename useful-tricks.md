@@ -93,4 +93,56 @@ boolean isPrime(int num) {
   - **Brute Force:** ~1,000,000,000 iterations ❌  
   - **Optimized:** ~31,622 iterations ✅ **(Much faster)**  
 
+
+#### diagonal and anti-diagonal indices
 ---
+
+### **1️⃣ Primary (Main) Diagonal**
+- The **primary diagonal** consists of elements where **row index = column index** (`arr[i][i]`).
+- It goes from **top-left to bottom-right**.
+
+**Example (3×3 matrix)**:
+```
+1  2  3
+4  5  6
+7  8  9
+```
+🔹 **Primary Diagonal Elements** = `{1, 5, 9}` (indices: `[0][0]`, `[1][1]`, `[2][2]`)
+
+💡 **Formula**:
+```java
+for (int i = 0; i < n; i++) {
+    System.out.print(arr[i][i] + " ");
+}
+```
+
+---
+
+### **2️⃣ Secondary (Anti) Diagonal**
+- The **secondary diagonal** consists of elements where **row index + column index = size - 1** (`arr[i][n-i-1]`).
+- It goes from **top-right to bottom-left**.
+
+**Same 3×3 matrix:**
+```
+1  2  3
+4  5  6
+7  8  9
+```
+🔹 **Secondary Diagonal Elements** = `{3, 5, 7}` (indices: `[0][2]`, `[1][1]`, `[2][0]`)
+
+💡 **Formula**:
+```java
+for (int i = 0; i < n; i++) {
+    System.out.print(arr[i][n-i-1] + " ");
+}
+```
+
+---
+
+### **🔹 Summary**
+| Type              | Formula            | Example (3×3)  |
+|------------------|-------------------|---------------|
+| **Primary Diagonal**   | `arr[i][i]`      | `{1, 5, 9}`   |
+| **Secondary Diagonal** | `arr[i][n-i-1]`  | `{3, 5, 7}`   |
+
+📌 **Diagonals are useful in matrix operations, image processing, and mathematical computations!** 🚀
