@@ -146,3 +146,7 @@ for (int i = 0; i < n; i++) {
 | **Secondary Diagonal** | `arr[i][n-i-1]`  | `{3, 5, 7}`   |
 
 📌 **Diagonals are useful in matrix operations, image processing, and mathematical computations!** 
+
+### Java - map.merge(num, 1, Integer::sum);
+
+You can use Map.merge() to update a count in a Map<K, Integer>. If the key is already present, it increases the count; otherwise, it sets it to 1.
