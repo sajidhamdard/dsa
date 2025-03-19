@@ -1,0 +1,18 @@
+# 16 Game-Changing Problem-Solving Patterns for DSA
+
+1. [Pattern 1](https://leetcode.com/problems/minimum-window-substring/solutions/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems/)
+2. [Pattern 2](https://leetcode.com/problems/frequency-of-the-most-frequent-element/solutions/1175088/C++-Maximum-Sliding-Window-Cheatsheet-Template/)
+3. [Pattern 3](https://leetcode.com/discuss/post/1688903/solved-all-two-pointers-problems-in-100-z56cn/)
+4. [Pattern 4](https://medium.com/leetcode-patterns/leetcode-pattern-3-backtracking-5d9e5a03dc26)
+5. [Pattern 5](https://leetcode.com/discuss/post/458695/dynamic-programming-patterns-by-aatalyk-pmgr/)
+6. [Pattern 6](https://leetcode.com/discuss/post/1437879/Dynamic-Programming-Patterns/)
+7. [Pattern 7](https://leetcode.com/discuss/post/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems/)
+8. [Pattern 8](https://leetcode.com/problems/permutations/)
+9. [Pattern 9](https://leetcode.com/discuss/post/937307/iterative-recursive-dfs-bfs-tree-travers-e1f4/)
+10. [Pattern 10](https://leetcode.com/discuss/post/655708/graph-for-beginners-problems-pattern-sam-06fb/)
+11. [Pattern 11](https://leetcode.com/discuss/post/2347639/a-comprehensive-guide-and-template-for-m-irii/)
+12. [Pattern 12](https://leetcode.com/discuss/post/4282051/all-types-of-patterns-for-bits-manipulations-and-how-to-use-it/)
+13. [Pattern 13](https://leetcode.com/discuss/post/2001789/collections-of-important-string-question-pc6y/)
+14. [Pattern 14](https://medium.com/leetcode-patterns/leetcode-pattern-1-bfs-dfs-25-of-the-problems-part-1-519450a84353)
+15. [Pattern 15](https://medium.com/leetcode-patterns/leetcode-pattern-2-dfs-bfs-25-of-the-problems-part-2-a5b269597f52)
+16. [Pattern 16](https://hackernoon.com/14-patterns-to-ace-any-coding-interview-question-c5bb3357f6ed)
