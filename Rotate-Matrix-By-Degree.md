@@ -126,3 +126,50 @@ Rotated Matrix (90 degrees clockwise):
 2. **Reverse each row** → Move elements into their rotated positions.
 
 This approach works in **O(N²) time complexity**, which is optimal for in-place rotation.
+
+
+### **180-Degree Rotation (Clockwise or Counterclockwise)**
+Rotate the matrix **twice** (90° + 90°) or simply reverse both **rows and columns**.
+
+#### **Original Matrix:**
+\[
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+\]
+
+#### **After 180° Rotation:**
+\[
+\begin{bmatrix}
+9 & 8 & 7 \\
+6 & 5 & 4 \\
+3 & 2 & 1
+\end{bmatrix}
+\]
+
+---
+
+### **270-Degree Rotation (Clockwise) = 90-Degree Counterclockwise**
+Same as **one 90° counterclockwise** rotation.
+
+#### **Original Matrix:**
+\[
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+\]
+
+#### **After 270° Rotation (Clockwise):**
+\[
+\begin{bmatrix}
+3 & 6 & 9 \\
+2 & 5 & 8 \\
+1 & 4 & 7
+\end{bmatrix}
+\]
+
+---
