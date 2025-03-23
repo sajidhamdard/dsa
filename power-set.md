@@ -85,7 +85,8 @@ public class PowerSetBitwise {
 
 **🔹 How It Works?**  
 - We generate all numbers from `0` to `2ⁿ - 1` (binary representation).  
-- Each `bit` in a number determines whether to include a particular element.  
+- Each `bit` in a number determines whether to include a particular element.
+- 
 
 ✅ **Time Complexity:** `O(2ⁿ * n)`  
 ✅ **Space Complexity:** `O(1)`  
@@ -97,3 +98,80 @@ public class PowerSetBitwise {
 |------------------|-------------|
 | **Backtracking** | Easy to understand, good for interview practice |
 | **Bit Manipulation** | More optimized for large input sets |
+
+
+
+
+
+### **Generating All Subsequences of a String**  
+
+#### **Concept:**
+The **power set** of a string represents all possible subsequences, including the empty set. Given a string `S = "abc"`, its power set consists of:  
+`["", "a", "b", "c", "ab", "ac", "bc", "abc"]`.
+
+#### **Method to Generate Subsequences using Bit Manipulation**  
+
+1. **Convert Each Number (0 to \(2^n - 1\)) to Binary:**  
+   - A string of length `n` has `2^n` subsequences.  
+   - Each number (0 to \(2^n - 1\)) represents a subset where **each bit (0 or 1) indicates whether to include a character**.  
+
+2. **Interpret Binary Representation:**  
+   - `0` → Character is **not included**.  
+   - `1` → Character is **included**.  
+
+3. **Example for "abc" (`n = 3`):**  
+   | **Num (Decimal)** | **Binary (Index 2 1 0)** | **Subsequence** |
+   |---------------|----------------|-------------|
+   | 0 | 000 | `""` (Empty set) |
+   | 1 | 001 | `"a"` |
+   | 2 | 010 | `"b"` |
+   | 3 | 011 | `"ab"` |
+   | 4 | 100 | `"c"` |
+   | 5 | 101 | `"ac"` |
+   | 6 | 110 | `"bc"` |
+   | 7 | 111 | `"abc"` |
+
+---
+
+### **Code to Generate Subsequences in Java**
+```java
+public class PowerSet {
+    public static void generateSubsequences(String s) {
+        int n = s.length();
+        int totalSubsets = 1 << n; // 2^n
+
+        for (int num = 0; num < totalSubsets; num++) {
+            StringBuilder subset = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                if ((num & (1 << i)) != 0) {
+                    subset.append(s.charAt(i)); // Include character
+                }
+            }
+            System.out.println(subset.toString());
+        }
+    }
+
+    public static void main(String[] args) {
+        generateSubsequences("abc");
+    }
+}
+```
+
+---
+
+### **Explanation of Code:**
+1. **Calculate `totalSubsets = 2^n`** using `1 << n`.  
+2. **Loop through each number from `0` to `2^n - 1`** (representing subsets).  
+3. **Check each bit using `num & (1 << i)`**:  
+   - If **1**, include the corresponding character.  
+   - If **0**, exclude it.  
+4. **Print all generated subsequences.**  
+
+---
+
+### **Complexity Analysis:**
+- **Loop runs for `2^n` subsets** → `O(2^n)`.
+- **Checking bits runs for `n` times per subset** → `O(n)`.
+- **Total Complexity:** `O(n * 2^n)`.  
+
+This method efficiently generates **all possible subsequences** of a given string! 🚀
