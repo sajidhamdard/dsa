@@ -150,3 +150,22 @@ for (int i = 0; i < n; i++) {
 ### Java - map.merge(num, 1, Integer::sum);
 
 You can use Map.merge() to update a count in a Map<K, Integer>. If the key is already present, it increases the count; otherwise, it sets it to 1.
+
+
+### **Shortcut to Check if a Bit is Set or Not in a Binary Number**  
+
+To check if the **k-th bit** (0-based index) of a number `n` is **set (1) or not set (0)**, use this bitwise trick:
+
+```java
+if ((n & (1 << k)) != 0) {
+    System.out.println("Bit is SET (1)");
+} else {
+    System.out.println("Bit is NOT set (0)");
+}
+```
+
+### **How It Works?**
+1. `1 << k` → Left shifts `1` by `k` positions, creating a mask.  
+2. `n & (1 << k)` → Checks if the `k-th` bit is `1`.  
+   - If result **≠ 0**, the bit is **set (1)**.  
+   - If result **= 0**, the bit is **not set (0)**.
