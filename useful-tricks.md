@@ -169,3 +169,11 @@ if ((n & (1 << k)) != 0) {
 2. `n & (1 << k)` → Checks if the `k-th` bit is `1`.  
    - If result **≠ 0**, the bit is **set (1)**.  
    - If result **= 0**, the bit is **not set (0)**.
+  
+### Unique list
+
+`Set<List<Integer>>` works fine because Java's HashSet uses the `equals()` and `hashCode()` methods of List to check for duplicates.
+
+```java
+Set<List<Integer>> uniqueSubsets = new HashSet<>(); 
+```
