@@ -177,3 +177,10 @@ if ((n & (1 << k)) != 0) {
 ```java
 Set<List<Integer>> uniqueSubsets = new HashSet<>(); 
 ```
+
+### List<Integer to int[]
+
+```java
+List<Integer> list = List.of(1, 2, 3, 4, 5);
+int[] array = list.stream().mapToInt(Integer::intValue).toArray();
+```
