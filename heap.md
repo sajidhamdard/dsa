@@ -157,3 +157,84 @@ System.out.println(minHeap.peek()); // O(1) time
 🚀 **TL;DR**:  
 🔹 **Heap is best when you need to frequently get/remove the smallest/largest element in `O(1)`.**  
 🔹 **List/Map cannot guarantee this efficiency.**
+
+
+When you insert an element into a `PriorityQueue` (which is implemented using a **binary heap**), it **automatically adjusts its position** based on its priority.  
+
+### **📌 How Does `PriorityQueue` Work Internally?**
+1. **Insertion**: When a new element is added, it is placed at the last available position in the heap (to maintain a **complete binary tree** structure).  
+2. **Heapify-Up (Bubble-Up)**: The element is compared with its parent and swapped **if necessary** to maintain the **heap property** (Min-Heap or Max-Heap).  
+3. **Deletion (`poll()`)**: The root element (highest priority) is removed, and the last element is moved to the root. Then, **Heapify-Down (Sink-Down)** is performed to restore the heap property.  
+
+---
+
+### **📌 Example: Min-Heap Insertion (Natural Order)**
+📌 **Adding elements one by one (`1, 2, 3, 0`) into a Min-Heap (`PriorityQueue`)**
+```
+pq.add(1)  →  [1]
+pq.add(2)  →  [1, 2]
+pq.add(3)  →  [1, 2, 3]
+pq.add(0)  →  [0, 1, 3, 2] (Heapify-Up occurs, 0 moves to root)
+```
+**Heap Structure after inserting `0`:**
+```
+    0
+   / \
+  1   3
+ /
+2
+```
+Now, `poll()` will remove `0`, and the heap will adjust itself.
+
+---
+
+### **📌 Example Code**
+```java
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // Min-Heap
+        minHeap.add(1);
+        minHeap.add(2);
+        minHeap.add(3);
+        minHeap.add(0); // This will move to the root automatically
+        
+        System.out.println(minHeap.poll()); // Output: 0 (smallest element)
+        System.out.println(minHeap.poll()); // Output: 1
+        System.out.println(minHeap.poll()); // Output: 2
+        System.out.println(minHeap.poll()); // Output: 3
+    }
+}
+```
+---
+
+### **📌 Max-Heap Example (Custom Comparator)**
+📌 If we use a **Max-Heap**, elements are **arranged in descending order**:
+```java
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+public class Main {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder()); // Max-Heap
+        maxHeap.add(1);
+        maxHeap.add(2);
+        maxHeap.add(3);
+        maxHeap.add(0); // Largest will move to the root
+
+        System.out.println(maxHeap.poll()); // Output: 3 (largest element)
+        System.out.println(maxHeap.poll()); // Output: 2
+        System.out.println(maxHeap.poll()); // Output: 1
+        System.out.println(maxHeap.poll()); // Output: 0
+    }
+}
+```
+
+---
+
+### **📌 Summary**
+✔ `PriorityQueue` **adjusts elements** inside a **binary heap** structure.  
+✔ **Min-Heap (default)** → Smallest element is always at the root.  
+✔ **Max-Heap (custom comparator)** → Largest element is always at the root.  
+✔ **Heapify-Up & Heapify-Down** keep the heap property intact. 
