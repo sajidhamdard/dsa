@@ -238,3 +238,51 @@ public class Main {
 ✔ **Min-Heap (default)** → Smallest element is always at the root.  
 ✔ **Max-Heap (custom comparator)** → Largest element is always at the root.  
 ✔ **Heapify-Up & Heapify-Down** keep the heap property intact. 
+
+
+### **📌 Useful Methods of `PriorityQueue` Class in Java**  
+The `PriorityQueue` class provides several methods to work efficiently with priority-based collections. Here are the most commonly used ones:
+
+---
+
+### **1️⃣ Basic Operations**
+| Method | Description |
+|--------|------------|
+| `boolean add(E e)` | Inserts an element into the priority queue and maintains the heap order. Throws an exception if insertion fails. |
+| `boolean offer(E e)` | Similar to `add()`, but returns `false` instead of throwing an exception if insertion fails. |
+| `E poll()` | Removes and returns the element with the highest priority (root of the heap). Returns `null` if the queue is empty. |
+| `E remove()` | Removes and returns the element with the highest priority. Throws `NoSuchElementException` if empty. |
+| `E peek()` | Retrieves, but does not remove, the element with the highest priority. Returns `null` if the queue is empty. |
+| `E element()` | Retrieves, but does not remove, the head element. Throws `NoSuchElementException` if empty. |
+
+---
+
+### **📌 Example Usage**
+```java
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(); // Min-Heap by default
+        
+        pq.add(10);
+        pq.offer(5);
+        pq.add(20);
+        
+        System.out.println(pq.peek());  // Output: 5 (smallest element)
+        System.out.println(pq.poll());  // Output: 5 (removes smallest)
+        System.out.println(pq.contains(10));  // Output: true
+        System.out.println(pq.size());  // Output: 2
+        
+        pq.clear();
+        System.out.println(pq.isEmpty());  // Output: true
+    }
+}
+```
+
+---
+
+### **📌 Notes:**
+✔ `add()` vs `offer()`: Both insert elements, but `add()` throws an exception on failure, while `offer()` returns `false`.  
+✔ `poll()` vs `remove()`: Both remove elements, but `poll()` returns `null` if empty, while `remove()` throws an exception.  
+✔ `peek()` vs `element()`: Both retrieve the top element without removing it, but `peek()` returns `null` if empty, while `element()` throws an exception.  
