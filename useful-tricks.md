@@ -192,3 +192,8 @@ int[][] scoreWithIndex = new int[n][2];
 // Sort the array in descending order of score
 Arrays.sort(scoreWithIndex, (a, b) -> b[0] - a[0]);
 ```
+
+### Find max from the array
+```java
+Arrays.stream(score).max().getAsInt();
+```
