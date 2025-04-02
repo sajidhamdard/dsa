@@ -184,3 +184,11 @@ Set<List<Integer>> uniqueSubsets = new HashSet<>();
 List<Integer> list = List.of(1, 2, 3, 4, 5);
 int[] array = list.stream().mapToInt(Integer::intValue).toArray();
 ```
+
+### Sort a 2d array
+
+```java
+int[][] scoreWithIndex = new int[n][2];
+// Sort the array in descending order of score
+Arrays.sort(scoreWithIndex, (a, b) -> b[0] - a[0]);
+```
