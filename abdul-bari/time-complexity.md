@@ -1,4 +1,4 @@
-Here’s the correct order of common time complexities from smallest to largest:
+Order of common time complexities from smallest to largest:
 
 \[
 O(1) < O(\log n) < O(\sqrt{n}) < O(n) < O(n \log n) < O(n^2) < O(n^3) < \dots < O(2^n) < O(n!) < O(n^n)
