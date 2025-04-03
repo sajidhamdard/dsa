@@ -1,3 +1,11 @@
+Here’s the correct order of common time complexities from smallest to largest:
+
+\[
+O(1) < O(\log n) < O(\sqrt{n}) < O(n) < O(n \log n) < O(n^2) < O(n^3) < \dots < O(2^n) < O(n!) < O(n^n)
+\]
+
+This represents the increasing order of growth rates, where smaller complexities are more efficient for large inputs.
+
 ### **1️⃣ O(n) - Linear Time Complexity**
 **Example:** Printing numbers from `1` to `n`
 ```java
