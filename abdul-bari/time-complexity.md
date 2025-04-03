@@ -1,5 +1,3 @@
----
-
 ### **1️⃣ O(n) - Linear Time Complexity**
 **Example:** Printing numbers from `1` to `n`
 ```java
