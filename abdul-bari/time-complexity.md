@@ -6,6 +6,33 @@ O(1) < O(\log n) < O(\sqrt{n}) < O(n) < O(n \log n) < O(n^2) < O(n^3) < \dots < 
 
 This represents the increasing order of growth rates, where smaller complexities are more efficient for large inputs.
 
+Let's verify this order by taking different values of \( n \) and computing each function.
+
+We'll take \( n = 10, 100, 1000 \) and compare the values of each function to confirm the growth rate.
+
+Here’s the verification of time complexity growth using \( n = 10, 100, 1000 \):
+
+| Complexity    | \( n = 10 \)  | \( n = 100 \)  | \( n = 1000 \) |
+|--------------|--------------|--------------|--------------|
+| \( O(1) \)   | 1            | 1            | 1            |
+| \( O(\log n) \)  | 3.32         | 6.64         | 9.97         |
+| \( O(\sqrt{n}) \) | 3.16         | 10           | 31.62        |
+| \( O(n) \)   | 10           | 100          | 1000         |
+| \( O(n \log n) \) | 33.22        | 664.39       | 9965.78      |
+| \( O(n^2) \) | 100          | 10,000       | 1,000,000    |
+| \( O(n^3) \) | 1000         | 1,000,000    | \( 10^9 \)  |
+| \( O(2^n) \) | 1024         | **inf**      | **inf**      |
+| \( O(n!) \)  | 3,628,800    | **inf**      | **inf**      |
+| \( O(n^n) \) | **inf**      | **inf**      | **inf**      |
+
+- For small values of \( n \), the differences are minor, but as \( n \) increases, exponential (\( 2^n \)), factorial (\( n! \)), and power (\( n^n \)) complexities grow extremely fast.
+- This confirms the order:  
+  \[
+  O(1) < O(\log n) < O(\sqrt{n}) < O(n) < O(n \log n) < O(n^2) < O(n^3) < O(2^n) < O(n!) < O(n^n)
+  \]
+- For \( n = 100 \) and \( n = 1000 \), exponential and higher complexities become infeasible to compute due to their rapid growth.
+
+
 ### **1️⃣ O(n) - Linear Time Complexity**
 **Example:** Printing numbers from `1` to `n`
 ```java
