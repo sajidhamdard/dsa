@@ -1,5 +1,3 @@
----
-
 ## 🪣 What is **Bucket Sort**?
 
 **Bucket Sort** is a sorting algorithm that:
