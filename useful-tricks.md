@@ -197,3 +197,9 @@ Arrays.sort(scoreWithIndex, (a, b) -> b[0] - a[0]);
 ```java
 Arrays.stream(score).max().getAsInt();
 ```
+
+### Integer comparison to avoid overflow issues
+
+```java
+(a, b) -> Integer.compare(b.getValue(), a.getValue()); //It’s a safe and idiomatic way to compare integers.
+```
