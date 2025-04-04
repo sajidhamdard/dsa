@@ -1,5 +1,3 @@
-Great question! Let’s break it down in simple terms.
-
 ---
 
 ## 🪣 What is **Bucket Sort**?
@@ -203,5 +201,57 @@ class Solution {
 ### 🧠 When to prefer Bucket Sort?
 - When values can be grouped by a small bounded integer (like frequency).
 - When performance matters and overhead of a heap is avoidable.
+
+---
+
+---
+
+## 🤔 If we can solve it without a heap, why use a heap at all?
+
+You're right — **both heap and bucket sort** solve the problem, so here's a breakdown of **when and why** to prefer one over the other.
+
+---
+
+## ✅ Heap is useful when:
+
+1. **You care about custom sorting logic**  
+   - Heap is flexible — you can sort by **frequency**, **lexical order**, or even combine criteria.
+   - For example: "Sort by frequency desc, but if same freq, use alphabetical order" — easy with a heap comparator.
+
+2. **The range of values (frequencies) is unknown or unbounded**
+   - In bucket sort, you need to allocate an array of size = max frequency. If max frequency is 1 million, that’s inefficient.
+
+3. **You only need top K frequent elements**  
+   - Heap shines in problems like **Top K Frequent Elements**, because it gives you the top items without full sorting.
+
+---
+
+## ✅ Bucket sort is better when:
+
+1. **You know frequencies are bounded and small**  
+   - Like in your problem: max frequency ≤ string length
+
+2. **You want linear time**  
+   - No need to insert into a `PriorityQueue` which takes `O(log k)` per insertion.
+
+3. **You don’t need any fancy custom sorting inside buckets**  
+   - If frequency is the only criteria, just group and output.
+
+---
+
+## ⚖️ Which one to prefer here?
+
+In **this specific problem** (`frequencySort`):
+- **Bucket sort is more efficient**, because:
+  - You already know the max frequency ≤ `s.length()`
+  - No extra sorting logic is needed beyond frequency
+- **Heap is more flexible**, but overkill here
+
+---
+
+## 🧠 Final takeaway:
+
+> ✔️ **Use heap when you need dynamic, top-k, or complex sorting logic.**  
+> ✔️ **Use bucket sort when frequency is small, bounded, and simple.**
 
 ---
