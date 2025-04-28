@@ -151,6 +151,8 @@ for (int i = 0; i < n; i++) {
 
 You can use Map.merge() to update a count in a Map<K, Integer>. If the key is already present, it increases the count; otherwise, it sets it to 1.
 
+### map.put(num, map.getOrDefault(num, 0) + 1); //similar to merge
+
 
 ### **Shortcut to Check if a Bit is Set or Not in a Binary Number**  
 
@@ -202,4 +204,10 @@ Arrays.stream(score).max().getAsInt();
 
 ```java
 (a, b) -> Integer.compare(b.getValue(), a.getValue()); //It’s a safe and idiomatic way to compare integers.
+```
+
+### Reverse sorting
+
+```java
+Arrays.sort(arr, Collections.reverseOrder());
 ```
