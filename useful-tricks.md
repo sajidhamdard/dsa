@@ -211,3 +211,29 @@ Arrays.stream(score).max().getAsInt();
 ```java
 Arrays.sort(arr, Collections.reverseOrder());
 ```
+
+
+### Character class useful methods
+
+Of course!  
+The `Character` class in Java has many **handy static methods** that are very useful for **competitive programming**, especially when dealing with strings, parsing, and validation.
+
+Here’s a **compact list of the most useful methods** you should know:
+
+---
+
+### **Most Useful `Character` Methods:**
+
+| Method | Purpose | Example |
+|:------|:--------|:--------|
+| `Character.isLetter(ch)` | Checks if `ch` is a letter (a-z or A-Z) | `'a' → true`, `'9' → false` |
+| `Character.isDigit(ch)` | Checks if `ch` is a digit (0-9) | `'5' → true`, `'b' → false` |
+| `Character.isLetterOrDigit(ch)` | Checks if `ch` is a letter **or** digit | `'c' → true`, `'7' → true`, `'#' → false` |
+| `Character.isLowerCase(ch)` | Checks if `ch` is a lowercase letter | `'g' → true`, `'G' → false` |
+| `Character.isUpperCase(ch)` | Checks if `ch` is an uppercase letter | `'G' → true`, `'g' → false` |
+| `Character.toLowerCase(ch)` | Converts a character to lowercase | `'A' → 'a'`, `'b' → 'b'` |
+| `Character.toUpperCase(ch)` | Converts a character to uppercase | `'a' → 'A'`, `'B' → 'B'` |
+| `Character.isWhitespace(ch)` | Checks if `ch` is a whitespace (space, tab, etc.) | `' ' → true`, `'a' → false` |
+| `Character.getNumericValue(ch)` | Converts a char digit or letter to int | `'5' → 5`, `'A' → 10`, `'F' → 15` |
+| `Character.compare(ch1, ch2)` | Compares two characters lexicographically | `'a', 'b' → negative (a < b)` |
+| `Character.isAlphabetic(ch)` | Checks if `ch` is an alphabetic character (letter) | `'A' → true`, `'z' → true` |
