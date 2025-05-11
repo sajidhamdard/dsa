@@ -133,3 +133,20 @@ BFS Traversal: 1 2 3 4
 3. **Count the number of levels (depth) in a tree using BFS.**
 4. **Detect a cycle in an undirected graph using BFS.**
 5. **Find the connected components in a graph.**
+
+
+```java
+//template
+
+Queue<TreeNode> queue = new LinkedList<>();
+queue.offer(root);
+while (!queue.isEmpty()) {
+    int size = queue.size();
+    for (int i = 0; i < size; i++) {
+        TreeNode node = queue.poll();
+        // CUSTOMIZE LOGIC HERE PER PROBLEM
+        if (node.left != null) queue.offer(node.left);
+        if (node.right != null) queue.offer(node.right);
+    }
+}
+```
