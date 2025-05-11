@@ -40,6 +40,7 @@ Click any topic below to open the note 👇
 - [Array vs List](notes/Array%20vs%20List.md)
 - [Binary Tree](notes/binary-tree.md)
 - [Heap](notes/heap.md)
+- [Deque](notes/deque.md)
 
 ---
 
