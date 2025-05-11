@@ -2,6 +2,11 @@
 
 This repository contains my personal notes on data structures and algorithms.
 
+## 🚀 Syllabus
+- [Syllabus](notes/syllabus.md)
+ 
+---
+
 # 📝 Notes Index
 
 Click any topic below to open the note 👇
