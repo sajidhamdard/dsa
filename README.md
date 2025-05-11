@@ -51,6 +51,7 @@ Click any topic below to open the note 👇
 - [BFS](notes/bfs.md)
 - [Inorder Traversal](notes/Inorder-traversal.md)
 - [Path Sum](notes/Path-sum.md)
+- [Maximum Depth of a Binary Tree](notes/max-depth-binary-tree.md)
 
 ---
 
