@@ -134,3 +134,94 @@ public int maxDepth(TreeNode root) {
 | DFS (Recursive)       | O(n)            | O(h)             |
 | BFS (Queue)           | O(n)            | O(n)             |
 | Iterative DFS (Stack) | O(n)            | O(n)             |
+
+---
+
+> **BFS (queue)** and **Iterative DFS (stack)** look **structurally similar** — both explicitly manage a data structure to track nodes.
+> Both process nodes level-by-level or depth-by-depth **explicitly**, unlike recursion where the call stack is implicit.
+
+|                    | BFS            | Iterative DFS |
+| ------------------ | -------------- | ------------- |
+| Data structure     | Queue (FIFO)   | Stack (LIFO)  |
+| Traversal style    | Level by level | Deep first    |
+| Ordering           | Wide first     | Deep first    |
+| Max Depth problem? | Yes            | Yes           |
+
+For **maximum depth problem**, both work fine — no need to "force" Iterative DFS if you already have DFS recursion or BFS working.
+
+---
+
+## 💡 **So why learn Iterative DFS at all?**
+
+> It’s not just for *this* problem — it’s a **general-purpose tool** that becomes critical when recursion is problematic.
+
+### 1️⃣ **When recursion can cause stack overflow (too deep recursion)**
+
+* Java has **limited call stack size** (\~1000-5000 frames usually).
+* In **very deep trees** (or graphs), **recursion fails**, but Iterative DFS (with explicit stack) works.
+
+```java
+// Example: Tree with height = 100000 (skewed)
+TreeNode root = new TreeNode(1);
+TreeNode curr = root;
+for (int i = 2; i <= 100000; i++) {
+    curr.right = new TreeNode(i);
+    curr = curr.right;
+}
+
+// Recursive DFS → StackOverflowError ❌
+// Iterative DFS → Works fine ✅
+```
+
+---
+
+### 2️⃣ **When problem constraints force you to control traversal order explicitly**
+
+* Some problems require **postorder**, **preorder**, or **custom traversal order**.
+* Iterative DFS lets you **customize traversal** more flexibly than recursion sometimes (e.g., reverse postorder).
+
+Examples:
+
+* Serialize/deserialize tree
+* Topological sort (graph)
+* Detect cycles in graph
+
+---
+
+### 3️⃣ **When interviewers explicitly ask for “do it without recursion”**
+
+* Many interviewers ask this **to test your understanding of call stack**.
+  If you say "I’ll use recursion" → they ask: "Now show me the iterative version."
+  So being ready avoids getting stuck.
+
+---
+
+### 4️⃣ **When environment does not support recursion well (embedded, limited stack)**
+
+E.g., in **competitive programming**, **embedded systems**, or **low-memory environments**, recursion is risky.
+
+---
+
+## ⚖️ **Summary:**
+
+|                             | Recursive DFS | BFS (queue) | Iterative DFS (stack)            |
+| --------------------------- | ------------- | ----------- | -------------------------------- |
+| Easy to write?              | ✅             | ✅           | ❌ (slightly more code)           |
+| Risk of stack overflow?     | ❌ (yes)       | ✅           | ✅                                |
+| Explicit traversal control? | ❌ (harder)    | ✅           | ✅                                |
+| Handles deep trees safely?  | ❌             | ✅           | ✅                                |
+| Interview readiness?        | ✅             | ✅           | ✅✅✅ (shows deeper understanding) |
+
+---
+
+## 🚀 **Final Advice (practical)**
+
+* For **simple problems** (max depth, path sum, etc.):
+  ✅ Use recursive DFS or BFS
+
+* For **interview prep & advanced problems**:
+  ✅ Learn Iterative DFS
+  (it’s like having an extra tool in your toolbox)
+
+* You don’t need to **always use** Iterative DFS
+  But you should be **comfortable** switching to it when recursion fails or interviewer asks.
