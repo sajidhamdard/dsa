@@ -263,3 +263,55 @@ This is the correct **tight bound**.
 | Step 1      | Sort each string     | O(n m log m)       |
 | Step 2      | Sort list of strings | O(n m log n)       |
 | **Overall** | Combined             | **O(n m log(nm))** |
+
+---
+
+### ✅ When we say **“using the identity”**, it refers to a known **mathematical property** (or formula) used to simplify an expression.
+
+---
+
+### 🔍 The Identity in Question:
+
+$$
+\log(n \cdot m) = \log n + \log m
+$$
+
+This is a **logarithmic identity**. It’s always true for positive values of `n` and `m`.
+
+---
+
+### 🧠 Why Use This Identity?
+
+In time complexity analysis, we often get expressions like:
+
+* $O(n \cdot m \cdot \log n + n \cdot m \cdot \log m)$
+
+We can factor out common terms:
+
+$$
+O(nm (\log n + \log m))
+$$
+
+And then apply the identity:
+
+$$
+\log n + \log m = \log(nm)
+$$
+
+So:
+
+$$
+O(nm (\log n + \log m)) = O(nm \log(nm))
+$$
+
+---
+
+### 💡 Meaning of “Using the Identity” in this context:
+
+It means you're **simplifying the expression** using a well-known mathematical rule (the logarithmic addition rule in this case).
+
+---
+
+### 📌 Summary:
+
+> “Using the identity $\log(nm) = \log n + \log m$” means you are simplifying or transforming your expression using this **logarithmic rule**.
