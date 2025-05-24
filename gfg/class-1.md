@@ -315,3 +315,79 @@ It means you're **simplifying the expression** using a well-known mathematical r
 ### 📌 Summary:
 
 > “Using the identity $\log(nm) = \log n + \log m$” means you are simplifying or transforming your expression using this **logarithmic rule**.
+
+---
+
+Understanding **when to multiply** and **when to add time complexities** is critical for accurate analysis. Here's a clear breakdown:
+
+### ✅ **You ADD time complexities when:**
+
+The two code blocks **run one after another (sequentially)** — not nested.
+
+#### 🔹 Example:
+
+```cpp
+// Block A
+for (int i = 0; i < n; i++) {
+    // O(n)
+}
+
+// Block B
+for (int j = 0; j < m; j++) {
+    // O(m)
+}
+```
+
+**Time Complexity:**
+
+$$
+O(n) + O(m) = O(n + m)
+$$
+
+👉 Use addition when **operations are independent and not nested**.
+
+---
+
+### ✅ **You MULTIPLY time complexities when:**
+
+The two code blocks are **nested** — one inside the other.
+
+#### 🔹 Example:
+
+```cpp
+for (int i = 0; i < n; i++) {          // O(n)
+    for (int j = 0; j < m; j++) {      // O(m)
+        // inner work
+    }
+}
+```
+
+**Time Complexity:**
+
+$$
+O(n) \times O(m) = O(nm)
+$$
+
+👉 Use multiplication when **one operation happens inside another**, increasing the number of total operations.
+
+---
+
+### 🔄 TL;DR Quick Rule:
+
+| Scenario                   | Combine Time Complexities As |
+| -------------------------- | ---------------------------- |
+| Code blocks **sequential** | Add: `O(A) + O(B)`           |
+| Code blocks **nested**     | Multiply: `O(A × B)`         |
+
+---
+
+### 💡 Real-World Analogy:
+
+* **Addition**: You wash clothes (`O(n)`) and then cook food (`O(m)`).
+
+  * Total time: `O(n + m)`
+* **Multiplication**: For each shirt (`O(n)`), you sew `m` buttons (`O(m)`).
+
+  * Total time: `O(n × m)`
+
+---
