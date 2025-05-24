@@ -170,3 +170,96 @@ Each of the `n * m` iterations takes `O(k)` time (where `k` = average string len
 
 ---
 
+This image explains the **time complexity analysis** of processing a list of strings in two steps. Here’s the breakdown:
+
+---
+
+### 🧾 **Problem Setup:**
+
+* Input: `n` strings of length `m` each.
+  Example input:
+  `["abd", "dfg", "bca", "ddb"]`
+* Goal: Perform **two steps** on them.
+* Let `n = number of strings` and `m = length of each string`.
+
+---
+
+### ✅ **Step-by-step Analysis:**
+
+---
+
+### 🔹 **Step 1: Sort characters of each string**
+
+* `"abd"` → `"abd"`
+* `"dfg"` → `"dfg"`
+* `"bca"` → `"abc"`
+* `"ddb"` → `"bdd"`
+
+This is sorting individual strings → each takes `O(m log m)` time.
+There are `n` strings.
+
+➡️ **Step 1 Time Complexity:**
+
+```
+O(n * m log m)
+```
+
+---
+
+### 🔹 **Step 2: Sort the entire list of strings**
+
+Input to this step (after step 1):
+`["abd", "dfg", "abc", "bdd"]` → Sort these lexicographically →
+`["abc", "abd", "bdd", "dfg"]`
+
+Now you're sorting `n` strings, where each comparison takes `O(m)` time (since comparing strings of length `m`).
+
+➡️ **Step 2 Time Complexity:**
+
+```
+O(n log n * m) = O(n m log n)
+```
+
+Some alternatives:
+
+* If you treat each string as a key of `length m`, this is equivalent to:
+
+```
+O(n * m log n)
+```
+
+Or more generally:
+
+```
+O(n m log n)
+```
+
+✅ The image correctly *rejects* a naive and wrong `O((n log n)^2)` estimate.
+
+---
+
+### 🔚 **Final Time Complexity:**
+
+Step 1: `O(n m log m)`
+Step 2: `O(n m log n)`
+
+🟰 **Total:**
+
+```
+O(n m log m + n m log n) = O(n m log(nm))
+```
+
+Using the identity:
+`log(nm) = log n + log m`
+
+This is the correct **tight bound**.
+
+---
+
+### ✅ Summary:
+
+| Step        | Operation            | Time Complexity    |
+| ----------- | -------------------- | ------------------ |
+| Step 1      | Sort each string     | O(n m log m)       |
+| Step 2      | Sort list of strings | O(n m log n)       |
+| **Overall** | Combined             | **O(n m log(nm))** |
