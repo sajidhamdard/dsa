@@ -391,3 +391,106 @@ $$
   * Total time: `O(n × m)`
 
 ---
+
+### ✅ Code:
+
+```cpp
+// TC: O(n^2)
+void func(int n) {
+    for (int i = 0; i < n; i++) {              // Outer loop
+        for (int j = i + 1; j < n; j++) {      // Inner loop
+            cout << i + j << endl;             // Constant time work
+        }
+    }
+}
+```
+
+---
+
+### 🔍 Step-by-step Analysis:
+
+Let’s focus on how many times the **`cout << i + j`** line executes.
+
+#### ✅ Outer loop:
+
+Runs from `i = 0` to `i = n-1` → **n iterations**
+
+#### ✅ Inner loop:
+
+For each value of `i`, `j` runs from `i+1` to `n-1`. So number of iterations for each `i` is:
+
+```
+(n - i - 1)
+```
+
+Let’s compute the total number of `cout` executions (total iterations of inner loop over all `i`):
+
+---
+
+### 🧠 Total Operations:
+
+$$
+\sum_{i=0}^{n-1}(n - i - 1)
+= \sum_{i=0}^{n-1}(n - 1 - i)
+= \sum_{k=1}^{n}(k) = \frac{n(n-1)}{2}
+$$
+
+---
+
+### 📈 Final Time Complexity:
+
+* The total number of `cout` executions is:
+
+  $$
+  \frac{n(n-1)}{2}
+  $$
+
+* Drop constants and lower-order terms:
+
+  $$
+  \boxed{O(n^2)}
+  $$
+
+---
+
+### 🧪 Example:
+
+Let’s say `n = 4`:
+
+* i = 0 → j = 1,2,3 → 3 iterations
+* i = 1 → j = 2,3 → 2 iterations
+* i = 2 → j = 3 → 1 iteration
+* i = 3 → j = none → 0 iterations
+
+Total = `3 + 2 + 1 = 6 = (4 × 3)/2`
+
+Again, matches the formula:
+
+$$
+\frac{n(n-1)}{2}
+$$
+
+---
+
+### ✅ Summary:
+
+* Nested loops, but inner loop depends on `i`
+* Total operations = **triangular sum**
+* Time complexity is **O(n²)**
+* **Efficient compared to full `O(n²)` when both loops run full `n` times**
+
+---
+
+* **Sum of first n natural numbers**:
+
+**Sum of first n natural numbers**:  
+`∑ i from 1 to n` = `n(n + 1) / 2`
+
+**Sum of Arithmetic Progression (AP)**:  
+Sₙ = n/2 × [2a + (n − 1)d]  
+(where `a` is the first term, `d` is the common difference)
+
+**Sum of Geometric Progression (GP)** (for r ≠ 1):  
+Sₙ = a × (1 − rⁿ) / (1 − r)  
+(where `a` is the first term, `r` is the common ratio)
+
