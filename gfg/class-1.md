@@ -562,3 +562,63 @@ Also, sometimes behavior varies with input — so Θ may **not apply**, but O st
 * **We use Θ** only when we’re sure the runtime is tightly bounded on both sides.
 
 ---
+
+## 🔍 Problem:
+
+Given an array of size `n`, find the target value using linear search.
+
+> ✅ For **linear search**, the **worst-case** time is **O(n)**
+> ✅ The **best-case** is **Ω(1)** (target is at index 0)
+> ✅ The **average-case** is **Θ(n)**
+
+---
+
+### ✅ Assumptions for Average Case:
+
+To calculate average case, we need to define what “average” means:
+
+* The **target is present** in the array.
+* The **target is equally likely to be at any index** (uniform distribution).
+* If the target is **not found**, we scan the entire array.
+
+---
+
+### 📊 Let's compute expected number of comparisons:
+
+#### Case 1: Target is **present**
+
+* Suppose array size is `n`
+* Probability target is at index `i` = `1/n` (uniformly likely)
+* If target is at index `i`, we make `i+1` comparisons (because arrays are 0-indexed)
+
+So, the **expected comparisons (E)** is:
+
+$$
+E = \frac{1}{n} \sum_{i=0}^{n-1} (i + 1) = \frac{1}{n} \sum_{i=1}^{n} i = \frac{1}{n} \cdot \frac{n(n+1)}{2} = \frac{n+1}{2}
+$$
+
+So on average, the algorithm performs **(n+1)/2 comparisons**, which is **Θ(n)**.
+
+---
+
+#### Case 2: Target is **not present**
+
+* The algorithm checks all `n` elements ⇒ `n` comparisons.
+* So the time is **O(n)**, and it's the **worst-case** too.
+
+---
+
+### 📈 Final Summary:
+
+| Case         | Comparisons | Time Complexity |
+| ------------ | ----------- | --------------- |
+| Best Case    | 1           | Ω(1)            |
+| Average Case | (n+1)/2     | Θ(n)            |
+| Worst Case   | n           | O(n)            |
+
+---
+
+### 💡 Conclusion:
+
+* You **prove average-case** by computing the **expected number of steps** across all inputs.
+* For linear search, average case = Θ(n), because we expect to look at half the elements on average.
