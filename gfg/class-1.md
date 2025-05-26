@@ -679,3 +679,57 @@ Big-O simplification only allows us to drop terms when:
 
 * They're the **same variable** (e.g., `O(n + n²) = O(n²)`)
 * Or you **know relationships** between variables
+
+---
+
+## ✅ 1. **Integers (e.g., `int`, `long`)**
+
+Each integer takes a **fixed amount of memory**, depending on the language and type:
+
+| Type      | Memory (Typical)                               |
+| --------- | ---------------------------------------------- |
+| `int`     | 4 bytes (32 bits)                              |
+| `long`    | 8 bytes (64 bits)                              |
+| `boolean` | 1 byte (sometimes more, depending on language) |
+
+So an array of `n` integers takes **O(n)** space, with **constant-sized elements**.
+
+---
+
+## ✅ 2. **Strings**
+
+Strings are more complex:
+
+* A string is an **object** (not a primitive type).
+* A string contains:
+
+  * A reference (pointer) in the array
+  * Plus the actual character array stored elsewhere in memory
+* Each character typically takes **1 byte (ASCII)** or **2 bytes (Unicode)**
+
+### Example:
+
+Array of `n` strings, where:
+
+* Each string has length `L`
+* Then total space = `O(n * L)` in worst case
+
+So even though the array itself is size `n`, the actual memory depends on the **total characters** in all strings.
+
+---
+
+## 🔁 Comparison:
+
+| Data Type     | Space per element                 | Total space (for array of size `n`) |
+| ------------- | --------------------------------- | ----------------------------------- |
+| Integer array | Constant (e.g., 4 bytes)          | O(n)                                |
+| String array  | Varies (depends on string length) | O(total characters) = O(n \* L)     |
+
+---
+
+### 💡 Conclusion:
+
+* **Integers** → fixed space → O(n)
+* **Strings** → variable space → O(n \* average string length)
+
+So in terms of **auxiliary space**, strings **usually consume more**, and you **cannot treat them as equivalent** to integers.
