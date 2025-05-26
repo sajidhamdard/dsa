@@ -622,3 +622,60 @@ So on average, the algorithm performs **(n+1)/2 comparisons**, which is **Θ(n)*
 
 * You **prove average-case** by computing the **expected number of steps** across all inputs.
 * For linear search, average case = Θ(n), because we expect to look at half the elements on average.
+
+---
+
+### Expression:
+
+$$
+O(n + m^2 + k)
+$$
+
+We want to simplify this Big-O expression.
+
+---
+
+### 📌 Rule: In Big-O, we **keep the dominant term(s)** and **drop the lower-order ones**.
+
+But there's a catch:
+We **cannot drop** terms unless we know how they relate to each other (which is **not known** in this case).
+
+---
+
+### Let's analyze:
+
+You have three terms:
+
+* `n` (linear term)
+* `m²` (quadratic term)
+* `k` (another linear term, but on a different variable)
+
+Because:
+
+* These are all **different variables**
+* We do **not know** if, for example, `n ≫ m²`, or `m² ≫ n`, or how `k` behaves
+
+👉 **We cannot drop any of them without further info**.
+
+---
+
+### ✅ Final Answer:
+
+So the correct Big-O remains:
+
+$$
+\boxed{O(n + m^2 + k)}
+$$
+
+This is already simplified as much as possible **unless**:
+
+* You are told something like `n = O(m²)` or `k ≪ n`, etc.
+
+---
+
+### 🧠 Remember:
+
+Big-O simplification only allows us to drop terms when:
+
+* They're the **same variable** (e.g., `O(n + n²) = O(n²)`)
+* Or you **know relationships** between variables
