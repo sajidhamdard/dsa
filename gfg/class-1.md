@@ -841,3 +841,103 @@ Here, each `fib(i)` is computed **once**, so:
 | 3    | Estimate total number of calls (recursion tree helps)                |
 | 4    | Check for overlapping subproblems                                    |
 | 5    | Use Master Theorem (if it's divide-and-conquer with fixed branching) |
+
+---
+
+## Let's analyze the **auxiliary space** of this recursive Fibonacci code:
+
+---
+
+### 🔁 Code:
+
+```java
+int fib(int n) {
+    if (n <= 1)
+        return n;
+    return fib(n - 1) + fib(n - 2);
+}
+```
+
+---
+
+## 💡 What is Auxiliary Space?
+
+**Auxiliary space** refers to the **extra space used by the algorithm, excluding the input and output.** In recursive functions, it mainly comes from the **call stack** used by function calls.
+
+---
+
+## 📚 Analysis of Call Stack
+
+This function is **recursive**, and each recursive call goes deeper until it reaches the base case `n <= 1`.
+
+Let’s look at the worst-case scenario:
+
+* `fib(n)` calls `fib(n - 1)` and `fib(n - 2)`
+* But **only one of these paths is active at a time on the call stack**
+* The **longest chain of calls** is `fib(n) → fib(n - 1) → fib(n - 2) → ... → fib(1)`
+
+So, the **maximum depth** of the recursive call stack is `O(n)`.
+
+---
+
+## ✅ Final Answer:
+
+* **Auxiliary Space = O(n)** (due to recursion stack)
+* **Note:** This is true **even though time complexity is O(2^n)** — because calls like `fib(n-2)` complete before we recurse into other branches, so the **call stack never holds more than n calls at once**.
+
+---
+
+## Let's now analyze **auxiliary space** for the **memoized version** of Fibonacci.
+
+---
+
+### 🧠 Memoized Fibonacci Code:
+
+```java
+int fib(int n, int[] dp) {
+    if (n <= 1) return n;
+    if (dp[n] != -1) return dp[n];
+    return dp[n] = fib(n - 1, dp) + fib(n - 2, dp);
+}
+```
+
+---
+
+## ✅ Step-by-Step Analysis
+
+### 📦 Space used:
+
+There are **two** main sources of space usage:
+
+1. **Recursion call stack**
+2. **Memoization array** (`dp[]`)
+
+---
+
+### 1️⃣ **Recursion Stack (Auxiliary Space)**
+
+* The function is still recursive.
+* The **worst-case depth** of the recursive calls is **`n`** (we go `fib(n) → fib(n-1) → ... → fib(1)`).
+* So, **auxiliary space** due to the call stack = **O(n)**
+
+> Even though `fib(n-2)` is reused from memo, `fib(n-1)` still leads to deep recursion.
+
+---
+
+### 2️⃣ **Memoization Array (`dp[]`)**
+
+* This is additional space, but not part of auxiliary space. It's considered **explicit space**.
+* Size = `O(n)` for storing all values from `fib(0)` to `fib(n)`.
+
+---
+
+## ✅ Final Answer:
+
+| Type of Space        | Complexity         |
+| -------------------- | ------------------ |
+| **Auxiliary Space**  | O(n)               |
+| **Total Space Used** | O(n) + O(n) = O(n) |
+
+(The total is still O(n), as both are linear.)
+
+---
