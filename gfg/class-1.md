@@ -733,3 +733,111 @@ So even though the array itself is size `n`, the actual memory depends on the **
 * **Strings** → variable space → O(n \* average string length)
 
 So in terms of **auxiliary space**, strings **usually consume more**, and you **cannot treat them as equivalent** to integers.
+
+---
+
+### 🔁 Problem: Fibonacci using Recursion
+
+```java
+int fib(int n) {
+    if (n <= 1)
+        return n;
+    return fib(n - 1) + fib(n - 2);
+}
+```
+
+---
+
+## 🧠 General Approach to Calculate Time Complexity of Recursive Code:
+
+---
+
+### ✅ Step 1: **Write the Recurrence Relation**
+
+Look at how many times the function is being called recursively, and how the input size changes.
+
+In the above code:
+
+* For each `fib(n)`, two calls are made: `fib(n-1)` and `fib(n-2)`
+* So the recurrence is:
+
+  $$
+  T(n) = T(n-1) + T(n-2) + O(1)
+  $$
+
+(The `+ O(1)` is for the addition operation.)
+
+---
+
+### ✅ Step 2: **Estimate the Growth**
+
+You analyze how many total calls happen as the recursion tree expands.
+
+The recursive tree for `fib(n)` looks like a **binary tree**, where each node splits into two more nodes (except the base cases). The number of calls roughly doubles with each increase in `n`.
+
+This gives:
+
+$$
+T(n) \approx 2^n
+$$
+
+So, **Time Complexity** = **O(2^n)** — exponential.
+
+---
+
+### ✅ Step 3: **Optional – Draw Recursion Tree**
+
+To visualize it better, you can draw the recursion tree:
+
+```
+fib(4)
+├── fib(3)
+│   ├── fib(2)
+│   │   ├── fib(1)
+│   │   └── fib(0)
+│   └── fib(1)
+└── fib(2)
+    ├── fib(1)
+    └── fib(0)
+```
+
+This helps to count the total calls and see overlapping subproblems.
+
+---
+
+### ✅ Step 4: **Check for Overlapping Subproblems**
+
+If the same subproblem is being solved multiple times, and you **don't** use memoization, the complexity is worse.
+
+* `fib(2)` is solved twice
+* `fib(1)` is solved 3 times
+* Hence, many redundant calls → exponential time
+
+---
+
+## 🧮 Bonus: Fibonacci with Memoization
+
+```java
+int fib(int n, int[] dp) {
+    if (n <= 1) return n;
+    if (dp[n] != -1) return dp[n];
+    return dp[n] = fib(n - 1, dp) + fib(n - 2, dp);
+}
+```
+
+Here, each `fib(i)` is computed **once**, so:
+
+* **Time Complexity:** O(n)
+* **Space Complexity:** O(n) for the `dp[]` array + O(n) call stack
+
+---
+
+## ✅ Summary of General Steps:
+
+| Step | Description                                                          |
+| ---- | -------------------------------------------------------------------- |
+| 1    | Identify base case and recursive calls                               |
+| 2    | Write the recurrence relation                                        |
+| 3    | Estimate total number of calls (recursion tree helps)                |
+| 4    | Check for overlapping subproblems                                    |
+| 5    | Use Master Theorem (if it's divide-and-conquer with fixed branching) |
