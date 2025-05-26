@@ -494,3 +494,71 @@ Sₙ = n/2 × [2a + (n − 1)d]
 Sₙ = a × (1 − rⁿ) / (1 − r)  
 (where `a` is the first term, `r` is the common ratio)
 
+---
+
+### ❓ Q1: If Big-O is an upper bound, then why not always say O(n²) or O(n!) just to be safe?
+
+Because while **Big-O is an upper bound**, we want the **tightest** or **smallest meaningful upper bound**.
+
+#### ✅ Example:
+
+Imagine a function takes `3n` steps. Technically:
+
+* It's O(n)
+* It's also O(n²), O(n³), O(n!), O(2ⁿ), etc. — **all upper bounds**
+
+But **O(n)** is the *smallest correct upper bound*.
+
+> If we said O(n²), it’s *technically true*, but **misleading**, because we’re implying the algorithm is slower than it actually is.
+
+#### 🎯 Key idea:
+
+Big-O is used to **communicate performance**. If we always gave loose upper bounds, we’d lose all sense of efficiency comparison.
+
+So we aim for:
+
+> ✅ **Tightest Big-O bound that is still correct**.
+
+---
+
+### ❓ Q2: If Θ(n) gives the exact bound, why not just use Θ all the time?
+
+Because:
+
+> Θ(n) means the function is **both** O(n) and Ω(n) (lower bound), i.e., it **always** takes around n time.
+
+But we often **don’t know the exact behavior**, or we care only about the **worst-case scenario**.
+
+#### 🔍 Example:
+
+Take quicksort:
+
+* Worst case: O(n²)
+* Best case: Ω(n log n)
+* Average case: Θ(n log n)
+
+In most cases, we only care about the **worst-case**, so we say:
+
+> "Quicksort is O(n²)", even though it's not Θ(n²).
+
+Also, sometimes behavior varies with input — so Θ may **not apply**, but O still does.
+
+---
+
+### 🔁 Summary:
+
+| Concept     | Meaning         | When we use it                   |
+| ----------- | --------------- | -------------------------------- |
+| **O(f(n))** | Upper bound (≤) | To express worst-case runtime    |
+| **Ω(f(n))** | Lower bound (≥) | To show minimum time it takes    |
+| **Θ(f(n))** | Tight bound (≡) | To express exact growth if known |
+
+---
+
+### ✅ In short:
+
+* **We use Big-O** because it gives a safe bound on performance, especially **worst-case**.
+* **We avoid loose upper bounds** (like O(n²) for a linear algorithm) because they **misrepresent performance**.
+* **We use Θ** only when we’re sure the runtime is tightly bounded on both sides.
+
+---
