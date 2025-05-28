@@ -93,6 +93,73 @@ Use DNF when you're given an array with **exactly 3 distinct values** (like colo
 
 ---
 
+In the **Dutch National Flag (DNF)** algorithm, we start with the **mid** pointer because it's the most efficient way to **partition the array into three sections** in a single pass.
+
+### First, a quick refresher on what DNF does:
+
+It sorts an array of only 3 types of elements — usually 0s, 1s, and 2s — in **one traversal**. The goal is to rearrange them so that:
+
+```
+All 0s come first, then 1s, then 2s.
+```
+
+We maintain 3 pointers:
+
+* `low`: marks the boundary of 0s.
+* `mid`: current index being evaluated.
+* `high`: marks the boundary of 2s.
+
+---
+
+### Why start at `mid = 0`?
+
+Because:
+
+1. **We don't know the first element yet**:
+   At the start, we haven’t inspected any elements. So, we begin evaluating from index `0`, hence `mid = 0`.
+
+2. **mid is the pointer that scans the array**:
+   The `mid` pointer is used to traverse through the array. It checks each value and decides what to do:
+
+   * If it's `0`, swap with `low`, move both `low` and `mid` forward.
+   * If it's `1`, it's already in the right place, just move `mid` forward.
+   * If it's `2`, swap with `high`, move `high` backward **but don't increment `mid`** (since the swapped value needs to be re-evaluated).
+
+3. **We want to maintain 3 regions**:
+   At any time during the traversal:
+
+   * `0 to low-1`: All 0s
+   * `low to mid-1`: All 1s
+   * `mid to high`: Unknown (to be processed)
+   * `high+1 to end`: All 2s
+
+   So, `mid` always points to the current element being processed in the unknown region.
+
+---
+
+### Example
+
+Array: `[2, 0, 2, 1, 1, 0]`
+
+Initial pointers:
+
+* `low = 0`, `mid = 0`, `high = 5`
+
+You start from `mid = 0` because that's the first element to inspect. From there, you keep processing elements by comparing `arr[mid]`.
+
+---
+
+### Summary
+
+We **start at `mid = 0`** (or wherever the start of the array is) because:
+
+* It is the first element to inspect.
+* `mid` always scans the current unclassified section.
+* It allows single-pass sorting by expanding the three regions (0s, 1s, and 2s) dynamically.
+
+
+---
+
 We **can** solve the Dutch National Flag problem using general-purpose sorting algorithms like:
 
 * **Quick Sort**
