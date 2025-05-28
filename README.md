@@ -57,6 +57,7 @@ Click any topic below to open the note 👇
 - [Inorder Traversal](notes/Inorder-traversal.md)
 - [Path Sum](notes/Path-sum.md)
 - [Maximum Depth of a Binary Tree](notes/max-depth-binary-tree.md)
+- [Dutch National Flag Algorithm](notes/DNF.md)
 
 ---
 
