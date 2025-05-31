@@ -324,3 +324,101 @@ long long power(long long a, long long b, long long mod) {
 > Recursion is a *tool* for clarity and structure. Iteration is a *tool* for performance and control. Use what's best **for the problem** and **the constraints**.
 
 ---
+
+## ✅ Example:
+
+If `n = 13`, you're writing:
+
+```
+1, 2, 3, ..., 9 → 9 numbers → 1 digit each → 9 digits  
+10, 11, 12, 13 → 4 numbers → 2 digits each → 8 digits  
+Total = 9 + 8 = 17 digits
+```
+
+The given function `countDigitsFrom1ToN(n)` computes this total **efficiently in O(log n)** time.
+
+---
+
+## 🔍 Code Explanation
+
+```cpp
+int countDigitsFrom1ToN(int n) {
+    int result = 0;
+    for (int i = 1; i - 1 < n; i *= 10) {
+        result += n - (i - 1);
+    }
+    return result;
+}
+```
+
+### 🧠 Key Idea:
+
+It works in **digit-length blocks**:
+
+* 1-digit numbers: from `1` to `9`
+* 2-digit numbers: from `10` to `99`
+* 3-digit numbers: from `100` to `999`, and so on...
+
+### 🔁 Loop Walkthrough:
+
+#### ✅ `i` represents powers of 10:
+
+* `i = 1` → 1-digit numbers start from 1
+* `i = 10` → 2-digit numbers start from 10
+* `i = 100` → 3-digit numbers start from 100
+* etc.
+
+---
+
+### ✏️ Formula in Loop:
+
+```cpp
+result += n - (i - 1);
+```
+
+This counts how many numbers exist from `i` to `n`, inclusive:
+
+* For `i = 1`, contribution = `n - 0 = n` → all numbers
+* For `i = 10`, contribution = `n - 9` → only 2-digit numbers and above
+* For `i = 100`, contribution = `n - 99` → only 3-digit numbers and above
+* ...
+
+And so on.
+
+It repeats until `i - 1 >= n` (i.e., we've crossed `n`).
+
+---
+
+## ✅ Dry Run for `n = 25`
+
+```
+i = 1      → result += 25 - (1 - 1) = 25
+i = 10     → result += 25 - (10 - 1) = 25 - 9 = 16
+i = 100    → 100 - 1 = 99 > 25, so loop ends
+Total = 25 + 16 = 41
+```
+
+### ✅ Manual Count:
+
+* 1–9 → 9 × 1 = 9 digits
+* 10–25 → 16 × 2 = 32 digits
+  → Total = 9 + 32 = **41** ✅
+
+---
+
+## 🧠 Time & Space Complexity
+
+| Complexity | Value                           |
+| ---------- | ------------------------------- |
+| **Time**   | O(log₁₀(n)) — because `i *= 10` |
+| **Space**  | O(1)                            |
+
+---
+
+## ✅ Summary
+
+This loop smartly calculates digits used from 1 to `n`:
+
+* Without converting numbers to strings
+* Without manually counting digits of each number
+* Uses digit-block logic based on powers of 10
