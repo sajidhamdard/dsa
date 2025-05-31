@@ -91,4 +91,70 @@ Total work = O(1 + 2 + 4 + ... + n) = O(n)
 
 ---
 
-Let me know if you want a dry run of this example or help analyzing a different recursive function.
+## 🔤 Character Operations
+
+---
+
+### ✅ **1. Check if Character is Uppercase**
+
+```cpp
+if (ch >= 'A' && ch <= 'Z') {
+    // ch is an uppercase letter
+}
+```
+
+---
+
+### ✅ **2. Check if Character is Lowercase**
+
+```cpp
+if (ch >= 'a' && ch <= 'z') {
+    // ch is a lowercase letter
+}
+```
+
+---
+
+### ✅ **3. Check if Character is a Digit**
+
+```cpp
+if (ch >= '0' && ch <= '9') {
+    // ch is a digit
+}
+```
+
+---
+
+### 🔁 **4. Convert Lowercase to Uppercase**
+
+```cpp
+ch = ch - 'a' + 'A';
+```
+
+#### Example:
+
+```cpp
+char ch = 'a';
+ch = ch - 'a' + 'A';  // becomes 'A'
+
+char ch = 'c';
+ch = ch - 'a' + 'A';  // becomes 'C'
+```
+
+---
+
+### 🔁 **5. Convert Uppercase to Lowercase**
+
+```cpp
+ch = ch - 'A' + 'a';
+```
+
+#### Example:
+
+```cpp
+char ch = 'B';
+ch = ch - 'A' + 'a';  // becomes 'b'
+```
+
+---
+
