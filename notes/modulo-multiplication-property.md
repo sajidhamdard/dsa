@@ -14,7 +14,7 @@ $$
 (a \times b) \% \text{MOD}
 $$
 
-It might **overflow** even before `% MOD` is applied — especially if `a` and `b` are large (e.g., $10^9$).
+It might **overflow** even before `\% MOD` is applied — especially if `a` and `b` are large (e.g., $10^9$).
 
 ---
 
@@ -72,19 +72,19 @@ This is a **mathematical identity** — and it's very useful in:
 
 Let’s say:
 
-* `a = 1_000_000_006`
+* `a = 1\_000\_000\_006`
 * `b = 2`
-* `MOD = 1_000_000_007` (a prime number)
+* `MOD = 1\_000\_000\_007` (a prime number)
 
 Now:
 
-* `a % MOD = 1_000_000_006`
-* `b % MOD = 2`
+* $a \% \text{MOD} = 1\,000\,000\,006$
+* $b \% \text{MOD} = 2$
 
 Then:
 
 $$
-((1_000_000_006) \times 2) \% 1_000_000_007 = 2_000_000_012 \% 1_000_000_007 = 1_000_000_005
+((1\,000\,000\,006) \times 2) \% 1\,000\,000\,007 = 2\,000\,000\,012 \% 1\,000\,000\,007 = 1\,000\,000\,005
 $$
 
 Safe and correct. ✅
