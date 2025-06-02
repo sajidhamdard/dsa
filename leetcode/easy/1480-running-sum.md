@@ -30,4 +30,4 @@ Can be O(1) if done in-place by modifying the input array.
 
 ### 🧩 Pattern:
 
-Prefix Sum
+ Prefix Sum
