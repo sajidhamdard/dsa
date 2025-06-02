@@ -1,4 +1,4 @@
-## [Richest Customer Wealth]([https://leetcode.com/problems/running-sum-of-1d-array/description/](https://leetcode.com/problems/richest-customer-wealth/))
+## [Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)
 
 ### ✅ Solution (Beats 100%)
 
