@@ -1,19 +1,19 @@
-## [Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)
+## [Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/description/)
 
 ### ✅ Solution (Beats 100%)
 
 ```java
 class Solution {
-    public int maximumWealth(int[][] accounts) {
-        int maxWealth = 0;
-        for(int[] row: accounts) {
-            int currentWealth = 0;
-            for(int num : row) {
-                currentWealth += num;
-            }
-            maxWealth = Math.max(currentWealth, maxWealth);
+    public int numberOfSteps(int num) {
+        int count = 0;
+        if(num == 0) return count;
+
+        int n = num;
+        while(n > 0) {
+            n = n % 2 == 0 ? n/2 : n-1;
+            ++count;
         }
-        return maxWealth;
+        return count;
     }
 }
 ````
@@ -32,4 +32,4 @@ O(1) — No extra space used
 
 ### 🧩 Pattern/Topic:
 
-Array, Matrix
+Math, Bit Manipulation
