@@ -17,12 +17,13 @@ class Solution {
 
 ### 📊 Time Complexity:
 
-O(n), where n is the length of the input array.
+`O(n)`, where n is the length of the input array.
 
 ### 🧠 Space Complexity:
 
-O(n) — for creating a new result array.
-Can be O(1) if done in-place by modifying the input array.
+`O(n)` — for creating a new result array.
+
+Can be `O(1)` if done in-place by modifying the input array.
 
 ### ❌ Mistakes / Challenges Faced:
 
@@ -30,4 +31,4 @@ Can be O(1) if done in-place by modifying the input array.
 
 ### 🧩 Pattern:
 
- Prefix Sum
+ `Array`, `Prefix Sum`
