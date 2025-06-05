@@ -49,8 +49,6 @@ class Solution {
 
 ### ❌ Mistakes / Challenges Faced:
 
-Sure! Here's a polished version of your explanation:
-
 
 *We could have easily solved this problem using Java library methods or built-in `String` functions, but that wouldn't serve the core purpose of the problem. Instead, we used the two-pointer approach, which is a more efficient and precise technique that checks for a valid palindrome character by character. To further enhance our understanding, we avoided using library methods like `Character.isLetterOrDigit()` or `toLowerCase()` and instead relied on ASCII-based logic to manually handle alphanumeric checks and case-insensitive comparisons.**
 
