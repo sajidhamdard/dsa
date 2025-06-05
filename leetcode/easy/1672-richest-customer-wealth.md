@@ -20,11 +20,11 @@ class Solution {
 
 ### 📊 Time Complexity:
 
-O(m * n), where m is the total rows and n is total columns the input 2D array.
+`O(m * n)`, where m is the total rows and n is total columns the input 2D array.
 
 ### 🧠 Space Complexity:
 
-O(1) — No extra space used
+`O(1)` — No extra space used
 
 ### ❌ Mistakes / Challenges Faced:
 
@@ -32,4 +32,4 @@ O(1) — No extra space used
 
 ### 🧩 Pattern/Topic:
 
-Array, Matrix
+`Array`, `Matrix`
