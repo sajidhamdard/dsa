@@ -18,10 +18,11 @@ class Solution {
 }
 ````
 
+### Bit manipulation solution
+
 ```java
 class Solution {
     public int numberOfSteps(int num) {
-        //Doing the same using bit manipulation logic
         int count = 0;
         if(num == 0) return count;
         int n  = num;
@@ -42,16 +43,16 @@ class Solution {
 
 ### 📊 Time Complexity:
 
-O(log n), Because we're either halving or decrementing the number, and the halving dominates in reducing size, the total number of iterations will be bounded by O(log n).
+`O(log n)` : Because we're either halving or decrementing the number, and the halving dominates in reducing size, the total number of iterations will be bounded by O(log n).
 
 ### 🧠 Space Complexity:
 
-O(1) — No extra space used
+`O(1)` — No extra space used
 
 ### ❌ Mistakes / Challenges Faced:
 
-* None
+* In bit manipulation solution if number is odd then we have to handle the edge case where number is 1. For 1 we will add only 1 to the total count. Rest all logic is straight forward.
 
 ### 🧩 Pattern/Topic:
 
-Math, Bit Manipulation
+`Math`, `Bit Manipulation`
