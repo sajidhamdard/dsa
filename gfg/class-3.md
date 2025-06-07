@@ -72,3 +72,18 @@ Here, you're skipping many elements, so the CPU may need to load a new cache lin
 | Array benefit     | Arrays are contiguous → spatial locality → faster iteration.           |
 
 ---
+
+Here’s a quick breakdown of **time complexities** for common operations on a **basic array** (fixed-size, like `int[] arr = new int[10]` in Java or C):
+
+| Operation                            | Time Complexity      | Notes                                                        |
+| ------------------------------------ | -------------------- | ------------------------------------------------------------ |
+| **Access**                           | `O(1)`               | Direct access via index, e.g., `arr[3]`                      |
+| **Update**                           | `O(1)`               | Assigning a value at an index, e.g., `arr[5] = 10`           |
+| **Insertion at end**                 | `O(1)` *(amortized)* | Only if space is available (dynamic arrays like `ArrayList`) |
+| **Insertion at beginning or middle** | `O(n)`               | Needs shifting elements to the right                         |
+| **Deletion at end**                  | `O(1)`               | Simply reduce size (in dynamic arrays)                       |
+| **Deletion at beginning or middle**  | `O(n)`               | Needs shifting elements to the left                          |
+| **Search (unsorted)**                | `O(n)`               | Linear scan to find the element                              |
+| **Search (sorted)**                  | `O(log n)`           | Binary search, only if the array is sorted                   |
+
+> ✅ If you're using a **dynamic array** (like `ArrayList` in Java or `vector` in C++), the internal array resizes when full, costing `O(n)` occasionally—but average insertion at the end remains **`O(1)` amortized**.
