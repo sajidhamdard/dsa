@@ -869,3 +869,94 @@ Multiplying all elements and dividing **seems simpler**, but:
 | Multiple edge cases  | ❌ More bug-prone   |
 
 That’s why **prefix–suffix** is the safest and most accepted solution.
+
+---
+
+## ✅ Problem Statement
+
+You are given two arrays `L[]` and `R[]`, where:
+
+* `L[i]` and `R[i]` denote the start and end of the `i-th` range.
+* Your task is to find the **element (number)** that appears in the **maximum number of given ranges**.
+
+---
+
+## ✅ Explanation
+
+### Key Idea: Prefix Sum (Difference Array Technique)
+
+1. For each range `[L[i], R[i]]`, we:
+
+   * Add `+1` at index `L[i]`
+   * Subtract `-1` at index `R[i] + 1`
+
+2. Then, compute the **prefix sum** to know how many ranges include each number.
+
+3. The number with the highest frequency is the answer.
+
+---
+
+## ✅ Java Code
+
+```java
+import java.util.*;
+
+public class MaxOccurrenceInRanges {
+
+    // TC: O(n + maxR), SC: O(maxR)
+    public static int maxInNRanges(int[] L, int[] R) {
+        int n = L.length;
+
+        int maxR = R[0];
+        for (int i = 1; i < n; i++) {
+            maxR = Math.max(maxR, R[i]);
+        }
+
+        int[] freq = new int[maxR + 2];
+
+        for (int i = 0; i < n; i++) {
+            freq[L[i]]++;
+            freq[R[i] + 1]--;
+        }
+
+        int maxFreq = freq[0];
+        int result = 0;
+        for (int i = 1; i <= maxR + 1; i++) {
+            freq[i] += freq[i - 1];
+            if (freq[i] > maxFreq) {
+                maxFreq = freq[i];
+                result = i;
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] L = {2, 1, 3};
+        int[] R = {5, 4, 9};
+
+        System.out.println(maxInNRanges(L, R)); // Output: 3
+    }
+}
+```
+
+---
+
+## ✅ Time and Space Complexity
+
+| Metric    | Value       |
+| --------- | ----------- |
+| **Time**  | O(n + maxR) |
+| **Space** | O(maxR)     |
+
+Where `n` is the number of ranges and `maxR` is the maximum value in R.
+
+---
+
+## ✅ Edge Case to Consider
+
+* If multiple elements have the same max frequency, this returns the **smallest one**.
+* Works correctly even if `L[i] == R[i]` (i.e., single-point ranges).
+
+---
