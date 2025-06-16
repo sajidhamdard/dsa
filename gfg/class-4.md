@@ -160,3 +160,106 @@ Multiplying all elements and dividing **seems simpler**, but:
 That’s why **prefix–suffix** is the safest and most accepted solution.
 
 ---
+
+
+Here's the **Java version** of your C++ code for checking if **any two numbers in a sorted array** add up to a given target sum. I’ve also added:
+
+---
+
+## ✅ Problem Statement
+
+Given a **sorted array** `arr` and a `target` integer, determine whether **any two elements** in the array sum to `target`.
+
+Return `true` if such a pair exists, else return `false`.
+
+---
+
+## ✅ Explanation
+
+We use the **Two Pointer Technique**:
+
+* Start with two pointers:
+
+  * `left` at the beginning
+  * `right` at the end
+* At each step:
+
+  * Calculate `sum = arr[left] + arr[right]`
+  * If `sum == target`: return `true`
+  * If `sum < target`: move `left++`
+  * If `sum > target`: move `right--`
+* Continue until `left < right` is false
+
+This works efficiently **only if the array is sorted**.
+
+---
+
+## ✅ Java Code
+
+```java
+public class PairSumInSortedArray {
+
+    // TC: O(n), SC: O(1)
+    public static boolean checkIfSumExists(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+
+            if (sum == target) return true;
+            if (sum < target) left++;
+            else right--;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(checkIfSumExists(new int[]{1, 2, 5, 6, 10}, 8));  // true
+        System.out.println(checkIfSumExists(new int[]{1, 2, 5, 6, 10}, 9));  // false
+        System.out.println(checkIfSumExists(new int[]{1, 2, 5, 6, 10}, 10)); // true
+        System.out.println(checkIfSumExists(new int[]{1, 2, 5, 5, 6, 10}, 10)); // true
+        System.out.println(checkIfSumExists(new int[]{1}, 2));              // false
+        System.out.println(checkIfSumExists(new int[]{1}, 1));              // false
+    }
+}
+```
+
+---
+
+## ✅ Time and Space Complexity
+
+| Metric               | Value |
+| -------------------- | ----- |
+| **Time Complexity**  | O(n)  |
+| **Space Complexity** | O(1)  |
+
+---
+
+## ✅ Edge Case Notes
+
+* Array of size < 2 → always return `false`
+* Array **must be sorted**. If not, either sort it first or use a HashSet approach in O(n) time.
+
+---
+
+### ✅ Approach: Using HashSet (Unsorted Array)
+
+**Idea**:
+
+* Iterate through the array.
+* For each element `num`, check if `target - num` exists in a `HashSet`.
+* If yes → pair exists → return `true`
+* Otherwise, add `num` to the `HashSet` and continue.
+
+---
+
+### 🧠 Why it works:
+
+If `a + b = target`, then checking `target - a == b` ensures we find the pair in O(1) using the set.
+
+---
+
+### ⏱️ Time Complexity: `O(n)`
+
+### 🗃️ Space Complexity: `O(n)`
