@@ -588,3 +588,112 @@ class Solution {
 | Wrap-around max subarray | Properly handled using totalSum - minSubarray |
 
 ---
+
+## ✅ Problem Statement
+
+Given a **circular integer array `nums`**, return the **maximum possible sum of a non-empty subarray** of `nums`.
+
+A **circular subarray** means the subarray can wrap around from the end of the array to the beginning.
+
+---
+
+## ✅ Example
+
+```java
+Input: nums = [1, -2, 3, -2]
+Output: 3
+Explanation: Subarray [3] has the maximum sum = 3
+
+Input: nums = [5, -3, 5]
+Output: 10
+Explanation: Wraparound subarray [5, ..., 5] gives 10
+
+Input: nums = [-3, -2, -3]
+Output: -2
+```
+
+---
+
+## ✅ Explanation of Approach
+
+We consider **two cases**:
+
+### Case 1: Subarray is **non-circular**
+
+* Use **Kadane's algorithm** to get `maxSum` (normal max subarray).
+
+### Case 2: Subarray is **circular**
+
+* Total sum of array: `totalSum`
+* Find the **minimum subarray sum** (as removing it gives the max circular sum).
+
+  * Trick: Multiply all elements by `-1`, then run Kadane’s to get `minSum = -maxSum(inverted array)`
+* `circularMaxSum = totalSum - minSubarraySum`
+
+---
+
+## ✅ Key Step:
+
+```java
+result = max(maxSum, totalSum - minSum)
+```
+
+But if **all numbers are negative**, circular sum becomes zero (invalid). So in that case, return `maxSum` only.
+
+---
+
+## ✅ Java Code
+
+```java
+class Solution {
+    public int maxSubarraySumCircular(int[] nums) {
+        int totalSum = Arrays.stream(nums).sum();
+        int maxSum = kadane(nums);
+
+        // Invert the array to find min subarray sum
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] *= -1;
+        }
+
+        int minSum = kadane(nums); // actually this is -1 * minSubarraySum
+        int circularSum = totalSum + minSum;
+
+        // If all numbers are negative, circularSum becomes 0, which is invalid
+        if (maxSum < 0) return maxSum;
+
+        return Math.max(maxSum, circularSum);
+    }
+
+    private int kadane(int[] nums) {
+        int currentSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for (int n : nums) {
+            currentSum += n;
+            maxSum = Math.max(maxSum, currentSum);
+            if (currentSum < 0) currentSum = 0;
+        }
+        return maxSum;
+    }
+}
+```
+
+---
+
+## ✅ Time & Space Complexity
+
+| Metric               | Value  |
+| -------------------- | ------ |
+| **Time Complexity**  | `O(n)` |
+| **Space Complexity** | `O(1)` |
+
+---
+
+## ✅ Edge Cases
+
+| Case                     | Explanation                                   |
+| ------------------------ | --------------------------------------------- |
+| All elements negative    | Return the maximum (least negative) element   |
+| Only one element         | Return that element                           |
+| Wrap-around max subarray | Properly handled using totalSum - minSubarray |
+
+---
