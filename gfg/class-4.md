@@ -258,3 +258,120 @@ If `a + b = target`, then checking `target - a == b` ensures we find the pair in
 ### ⏱️ Time Complexity: `O(n)`
 
 ### 🗃️ Space Complexity: `O(n)`
+
+
+---
+
+## ✅ Problem:
+
+> **Check if a Triplet or Quadruplet Exists with Given Sum**
+
+Given an array of integers and a target value, return whether:
+
+* Any **3 elements** (`arr[i] + arr[j] + arr[k]`) add up to the target → Triplet Sum
+* Any **4 elements** (`arr[i] + arr[j] + arr[k] + arr[l]`) add up to the target → Quadruplet Sum
+
+---
+
+## 💡 Brute Force (Triplet Sum):
+
+* Use 3 nested loops to try all combinations.
+* **Time Complexity:** O(n³)
+* **Space Complexity:** O(1)
+
+---
+
+## 💡 Optimized Approach (Two Pointer for Triplets):
+
+1. **Sort** the array.
+2. Loop through each element `i`:
+
+   * For every `i`, fix it and find a pair (`j`, `k`) such that `arr[j] + arr[k] = target - arr[i]` using 2-pointer.
+3. For quadruplets, do the same by fixing two elements and using 2-pointer for the rest.
+
+---
+
+## ✅ Java Code (Triplet + Quadruplet)
+
+```java
+import java.util.Arrays;
+
+public class SumChecker {
+
+    // Two-pointer approach
+    public static boolean checkIfSumPairExists(int[] arr, int target, int left, int right) {
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+
+            if (sum == target) return true;
+            if (sum < target) left++;
+            else right--;
+        }
+        return false;
+    }
+
+    // Triplet Sum Exists
+    public static boolean checkIfTripletSumExists(int[] arr, int target) {
+        Arrays.sort(arr);
+        int n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            int newTarget = target - arr[i];
+
+            if (checkIfSumPairExists(arr, newTarget, i + 1, n - 1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Quadruplet Sum Exists
+    public static boolean checkIfQuadrupleSumExists(int[] arr, int target) {
+        Arrays.sort(arr);
+        int n = arr.length;
+
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1; j < n - 1; j++) {
+                int newTarget = target - arr[i] - arr[j];
+
+                // Must start from j+1, not i+1 (to avoid using same elements again)
+                if (checkIfSumPairExists(arr, newTarget, j + 1, n - 1)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // Test
+    public static void main(String[] args) {
+        System.out.println(checkIfTripletSumExists(new int[]{1, 4, 45, 6, 10, 8}, 13)); // true
+        System.out.println(checkIfTripletSumExists(new int[]{1, 4, 45, 6, 10, 8}, 30)); // false
+        System.out.println(checkIfTripletSumExists(new int[]{1, 4, 45, 6, 10, 8}, 26)); // true
+        System.out.println(checkIfTripletSumExists(new int[]{1}, 3)); // false
+
+        System.out.println(checkIfQuadrupleSumExists(new int[]{1, 4, 45, 6, 10, 8}, 63)); // true (45+10+6+2)
+        System.out.println(checkIfQuadrupleSumExists(new int[]{1, 2, 3, 4, 5}, 100)); // false
+    }
+}
+```
+
+---
+
+## ⏱ Time & Space Complexity:
+
+### ✅ For Triplet:
+
+* **Time:** O(n²)
+
+  * Outer loop `O(n)` and inner two-pointer scan `O(n)`
+* **Space:** O(1) (ignoring sort)
+
+### ✅ For Quadruplet:
+
+* **Time:** O(n³)
+
+  * Two outer loops `O(n²)` and two-pointer `O(n)`
+* **Space:** O(1)
+
+---
