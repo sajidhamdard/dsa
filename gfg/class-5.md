@@ -112,3 +112,93 @@ When we apply **Divide and Conquer**, we break down a complex problem into small
 
 Recursion often **absorbs the complexity**, making it easier to reason about and solve the overall problem.
 
+---
+
+## 🧠 Approach: Binary Search
+
+We use **modified binary search**:
+
+1. **First Occurrence**:
+
+   * When `arr[mid] == target`, store it in result
+   * Move to the **left half** to check for earlier occurrence
+
+2. **Last Occurrence**:
+
+   * When `arr[mid] == target`, store it in result
+   * Move to the **right half** to check for later occurrence
+
+---
+
+## ⏱ Time and Space Complexity
+
+* **Time:** `O(log n)` for both first and last search
+* **Space:** `O(1)` (no extra memory used)
+
+---
+
+## ✅ Java Code
+
+```java
+import java.util.*;
+
+public class Solution {
+
+    public static int getFirstOccurrence(int[] arr, int target) {
+        int low = 0, high = arr.length - 1;
+        int result = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;
+                high = mid - 1;  // go left
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return result;
+    }
+
+    public static int getLastOccurrence(int[] arr, int target) {
+        int low = 0, high = arr.length - 1;
+        int result = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;
+                low = mid + 1;  // go right
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return result;
+    }
+
+    public static int[] findFirstAndLastOccurrence(int[] arr, int target) {
+        int first = getFirstOccurrence(arr, target);
+        if (first == -1) return new int[]{-1, -1};
+
+        int last = getLastOccurrence(arr, target);
+        return new int[]{first, last};
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(findFirstAndLastOccurrence(new int[]{1, 3, 5, 5, 5, 5, 67, 123, 125}, 5)));     // [2, 5]
+        System.out.println(Arrays.toString(findFirstAndLastOccurrence(new int[]{1, 3, 5, 5, 5, 5, 67, 123, 125}, 123)));   // [7, 7]
+        System.out.println(Arrays.toString(findFirstAndLastOccurrence(new int[]{5, 5, 5, 5}, 5)));                         // [0, 3]
+        System.out.println(Arrays.toString(findFirstAndLastOccurrence(new int[]{1, 3, 5, 5, 5, 5, 67, 123, 125}, 68)));    // [-1, -1]
+    }
+}
+```
+
+---
