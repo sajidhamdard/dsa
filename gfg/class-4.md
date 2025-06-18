@@ -161,11 +161,6 @@ That’s why **prefix–suffix** is the safest and most accepted solution.
 
 ---
 
-
-Here's the **Java version** of your C++ code for checking if **any two numbers in a sorted array** add up to a given target sum. I’ve also added:
-
----
-
 ## ✅ Problem Statement
 
 Given a **sorted array** `arr` and a `target` integer, determine whether **any two elements** in the array sum to `target`.
