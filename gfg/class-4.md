@@ -375,3 +375,94 @@ public class SumChecker {
 * **Space:** O(1)
 
 ---
+
+
+## ✅ Problem: Remove Duplicates from Sorted Array (In-Place)
+
+**Given:** A sorted array
+**Goal:** Remove duplicates **in-place** such that each element appears only once and return the new length.
+
+> The first part of the array should contain the unique elements.
+
+---
+
+## 💡 Brute Force
+
+* Use an extra `Set` to store unique elements.
+* Then copy them back to the original array.
+
+⏱ Time: O(n)
+🧠 Space: O(n) extra
+
+---
+
+## ✅ Optimized Approach: Two Pointers
+
+### Idea:
+
+* Use two pointers `i` and `j`.
+* `i` keeps track of the next unique element’s position.
+* `j` scans the array and skips over duplicates.
+
+### Steps:
+
+1. Start `i = 0`, `j = 0`
+2. While `j < n`
+
+   * Write `arr[i] = arr[j]`
+   * Skip all duplicate `arr[j] == arr[i]`
+   * Move `i` forward
+
+---
+
+## ✅ Java Code
+
+```java
+import java.util.*;
+
+public class RemoveDuplicates {
+
+    // Time: O(n), Space: O(1)
+    public static int removeDuplicatesInPlace(int[] arr) {
+        int n = arr.length;
+        if (n == 0) return 0;
+
+        int i = 0, j = 0;
+
+        while (j < n) {
+            arr[i] = arr[j];
+
+            // Move j forward while it's pointing to duplicates
+            while (j < n && arr[j] == arr[i]) {
+                j++;
+            }
+            i++;
+        }
+
+        return i; // 'i' is the count of unique elements
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 1, 2, 3, 3, 4, 5, 5};
+
+        int newLength = removeDuplicatesInPlace(arr);
+
+        System.out.println("After removing duplicates:");
+        for (int i = 0; i < newLength; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+```
+
+---
+
+## ⏱ Time and Space Complexity
+
+| Measure       | Value |
+| ------------- | ----- |
+| **Time**      | O(n)  |
+| **Space**     | O(1)  |
+| **In-place?** | ✅ Yes |
+
+---
