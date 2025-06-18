@@ -373,3 +373,37 @@ public class Solution {
 * Always compute `mid` using `low + (high - low) / 2` to avoid integer overflow.
 
 ---
+
+### ✅ Problem Statement
+
+You are given a rotated sorted array with **no duplicates**. Find the minimum element in **O(log n)** time.
+
+Example:
+Input: `[4, 5, 6, 7, 0, 1, 2]`
+Output: `0`
+
+---
+
+### 🧠 Approach
+
+You used **Binary Search**, which is the most optimal approach here:
+
+1. You compare `nums[mid]` with `nums[high]`.
+2. If `nums[mid] <= nums[high]`, the minimum lies on the **left side (including mid)**, so move `high = mid`.
+3. Else, the minimum lies on the **right side (excluding mid)**, so do `low = mid + 1`.
+4. Loop continues until `low == high`.
+
+---
+
+### ⏱ Time and Space Complexity
+
+* **Time Complexity:** O(log n)
+* **Space Complexity:** O(1)
+
+---
+
+### ✅ Final Verdict
+
+This is a **perfect and accepted** solution for **rotated sorted array without duplicates**.
+
+---
