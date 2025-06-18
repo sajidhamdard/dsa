@@ -1,3 +1,9 @@
+`(low + high) / 2` ✅ Simple but risky
+
+`low + (high - low) / 2` ✅ Safer and preferred in interviews and production
+
+---
+
 #### **`len(n)` Function**
 ```java
 int len(int n) {
