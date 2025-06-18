@@ -202,3 +202,85 @@ public class Solution {
 ```
 
 ---
+
+
+## ✅ Problem: Integer Square Root of a Number
+
+**Given:** A non-negative integer `n`
+**Goal:** Return the **floor value** of the square root of `n`.
+That is, return the greatest integer `x` such that `x * x ≤ n`.
+
+### 🔍 Examples:
+
+* `sqrtOfN(25)` → 5
+* `sqrtOfN(30)` → 5
+* `sqrtOfN(1)` → 1
+
+---
+
+## 🧠 Approach: Binary Search
+
+We search for the square root between `1` and `n/2`.
+At each step, we:
+
+* Check if `mid * mid == n` → return `mid`
+* If `mid * mid < n`, move `low = mid + 1`, and store `mid` as a candidate
+* Else, reduce search space with `high = mid - 1`
+
+---
+
+## ⏱ Time and Space Complexity
+
+* **Time:** O(log n)
+* **Space:** O(1)
+
+---
+
+## ☑️ Java Code
+
+```java
+public class Solution {
+
+    // TC: O(log n), SC: O(1)
+    public static int sqrtOfN(int n) {
+        if (n <= 1) return n;
+
+        int low = 1, high = n / 2;
+        int result = 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            // Use long to avoid overflow
+            long square = (long) mid * mid;
+
+            if (square == n) {
+                return mid;
+            } else if (square < n) {
+                result = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sqrtOfN(1));   // 1
+        System.out.println(sqrtOfN(25));  // 5
+        System.out.println(sqrtOfN(30));  // 5
+        System.out.println(sqrtOfN(0));   // 0
+        System.out.println(sqrtOfN(100)); // 10
+    }
+}
+```
+
+---
+
+## 📌 Note:
+
+* Use `long` for `mid * mid` to avoid integer overflow for large inputs.
+
+---
