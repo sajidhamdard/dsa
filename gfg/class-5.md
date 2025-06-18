@@ -284,3 +284,92 @@ public class Solution {
 * Use `long` for `mid * mid` to avoid integer overflow for large inputs.
 
 ---
+
+## ✅ Problem: Search in a Sorted Rotated Array
+
+You are given a **sorted** array that has been **rotated** at some unknown pivot. Your task is to search for a given `target` value in the array.
+
+If the element exists, return its index. If not, return `-1`.
+
+---
+
+### 🔍 Example
+
+Input:
+`arr = [5, 6, 7, 8, 9, 10, 1, 2, 3], target = 2`
+Output: `7`
+
+---
+
+## 🧠 Approach: Modified Binary Search
+
+Even though the array is rotated, **one half will always be sorted**.
+
+* If the left half `arr[low] to arr[mid]` is sorted, check if the target lies within that range.
+* If not, search in the right half.
+* Otherwise, the right half `arr[mid] to arr[high]` is sorted — check there.
+* Repeat until found.
+
+---
+
+## ⏱ Time and Space Complexity
+
+* **Time Complexity:** O(log n)
+* **Space Complexity:** O(1)
+
+---
+
+## ☑️ Java Code
+
+```java
+public class Solution {
+
+    // TC: O(log n), SC: O(1)
+    public static int searchInSortedRotatedArray(int[] arr, int target) {
+        int low = 0, high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) return mid;
+
+            // Left half is sorted
+            if (arr[low] <= arr[mid]) {
+                if (target >= arr[low] && target <= arr[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+            // Right half is sorted
+            else {
+                if (target >= arr[mid] && target <= arr[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(searchInSortedRotatedArray(new int[]{5, 6, 7, 8, 9, 10, 1, 2, 3}, 2));   // 7
+        System.out.println(searchInSortedRotatedArray(new int[]{5, 6, 7, 8, 9, 10, 1, 2, 3}, 1));   // 6
+        System.out.println(searchInSortedRotatedArray(new int[]{5, 6, 7, 8, 9, 10, 1, 2, 3}, 10));  // 5
+        System.out.println(searchInSortedRotatedArray(new int[]{5, 6, 7, 8, 9, 10, 1, 2, 3}, 5));   // 0
+        System.out.println(searchInSortedRotatedArray(new int[]{5, 6, 7, 8, 9, 10, 1, 2, 3}, 20));  // -1
+        System.out.println(searchInSortedRotatedArray(new int[]{5, 6, 7, 8, 9, 10}, 6));           // 1
+    }
+}
+```
+
+---
+
+## 💡 Notes
+
+* Be sure to handle duplicates separately (different logic needed if duplicates are allowed).
+* Always compute `mid` using `low + (high - low) / 2` to avoid integer overflow.
+
+---
