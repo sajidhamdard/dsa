@@ -65,6 +65,41 @@ Example: `hash = key % tableSize` (simple, but may be weak)
 
 ---
 
+### 🔍 **Java HashMap: LinkedList vs Red-Black Tree**
+
+#### 🔸 **Before Java 8**
+
+* Each bucket in `HashMap` used a **LinkedList** to store entries with the same hash (i.e., collisions).
+* In worst-case (many collisions), operations degrade to **O(n)** time.
+
+#### 🔸 **Java 8 and after**
+
+* If the number of entries in a bucket **exceeds 8**, and the bucket size is large enough (table ≥ 64):
+  → The **LinkedList is converted to a Red-Black Tree**.
+
+#### 📈 **Why Red-Black Tree?**
+
+* To avoid **performance degradation** due to hash collisions.
+* Reduces worst-case time complexity from **O(n)** → **O(log n)** for search, insert, delete in a bucket.
+
+---
+
+### ⚙️ **Thresholds (Java 8 HashMap):**
+
+| Condition                  | Action                     |
+| -------------------------- | -------------------------- |
+| > 8 entries in a bucket    | Convert to Tree            |
+| < 6 entries after deletion | Convert back to LinkedList |
+
+---
+
+### 🧠 Summary:
+
+* **LinkedList** is simple but slow with collisions → O(n)
+* **Red-Black Tree** improves performance → O(log n)
+* Java 8+ uses both: **LinkedList for few entries**, **Tree for many**
+
+---
 
 ### 🔍 **Problem Summary:**
 [LeetCode Link](https://leetcode.com/problems/search-a-2d-matrix-ii/)
