@@ -1,3 +1,71 @@
+### 🔍 **What is Hashing?**
+
+Hashing is a technique to **map data (key)** to a **fixed-size value (index)** using a **hash function**, typically used in **hash tables**, like `HashMap`, `HashSet`.
+
+---
+
+### 🐢 **Why things are slow without hashing?**
+
+Without hashing:
+
+* Insertion, search, and deletion in **arrays/lists** = O(n)
+* You must **linearly scan** to find a key
+* In **sorted arrays**, you can use binary search = O(log n), but still slower than hashing
+
+---
+
+### ⚡ **How hashing helps?**
+
+* Maps keys directly to an index → **average O(1)** time
+* No need to search — just jump to the location
+
+---
+
+### 🎯 **Hash Collision**
+
+Occurs when **two different keys hash to the same index**.
+
+#### 👉 How it's handled:
+
+1. **Chaining** – Store a list at each index (e.g., LinkedList or Tree)
+2. **Open Addressing** – Probe for next available slot (e.g., linear probing)
+
+---
+
+### ✅ **What makes a good hash function?**
+
+* Distributes keys **evenly**
+* Minimizes **collisions**
+* Fast to compute
+* Deterministic (same input → same output)
+
+Example: `hash = key % tableSize` (simple, but may be weak)
+
+---
+
+### 📊 **Time Complexities (Hash-based DS like HashMap/HashSet):**
+
+| Operation     | Average Case | Worst Case (due to collisions) |
+| ------------- | ------------ | ------------------------------ |
+| Insertion     | O(1)         | O(n)                           |
+| Deletion      | O(1)         | O(n)                           |
+| Search/Access | O(1)         | O(n)                           |
+
+> Worst case happens if **all keys collide** and go into one bucket (e.g., all linked in one list).
+
+---
+
+### 🧠 Summary:
+
+* Hashing = fast mapping of keys to index
+* Avoids O(n) searches
+* Collisions must be handled
+* Good hash function = fewer collisions
+* Avg case for insert/search/delete: **O(1)**
+
+---
+
+
 ### 🔍 **Problem Summary:**
 [LeetCode Link](https://leetcode.com/problems/search-a-2d-matrix-ii/)
 
