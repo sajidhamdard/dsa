@@ -1,3 +1,6 @@
+`ceil(a / b) == (a + b - 1) / b`   // valid when a, b are positive integers
+
+---
 `(low + high) / 2` ✅ Simple but risky
 
 `low + (high - low) / 2` ✅ Safer and preferred in interviews and production
