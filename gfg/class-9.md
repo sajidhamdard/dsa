@@ -109,7 +109,82 @@ public class LinkedList {
 
 ---
 
-### 🚀 Summary
+**LRU (Least Recently Used)** is a **caching strategy** that removes the **least recently used item** when the cache is full.
 
-* **Use Linked Lists** if you have **frequent insertions/deletions** (especially at head/tail).
-* **Use Arrays** if you need **fast random access**.
+---
+
+### 📚 Concept:
+
+* Tracks usage order of items.
+* When an item is accessed, it becomes **most recently used**.
+* If the cache exceeds capacity, **least recently used item is removed**.
+
+---
+
+### 🧱 Using Linked List:
+
+* A **Doubly Linked List** is used to maintain the usage order:
+
+  * **Head** = most recently used
+  * **Tail** = least recently used
+* On access:
+
+  * Remove the node from its position and move it to the front.
+* On insert:
+
+  * Add new node at head.
+  * If over capacity, remove node from tail.
+
+---
+
+### 🔧 Supporting Structure:
+
+* Use **HashMap + Doubly Linked List** for efficient operations:
+
+  * `HashMap`: O(1) access to nodes
+  * `LinkedList`: O(1) insert/delete from head/tail
+
+---
+
+### ⏱️ Time Complexities:
+
+| Operation | Time |
+| --------- | ---- |
+| Get/Put   | O(1) |
+
+---
+
+### 📌 What is Locality of Reference?
+
+In computer systems, **locality of reference** means:
+
+* **Temporal locality**: Recently accessed data is likely to be accessed again soon.
+* **Spatial locality**: Nearby memory locations are likely to be accessed soon.
+
+This is **well utilized by arrays**, which are stored in **contiguous memory blocks**.
+
+---
+
+### ❌ Why Linked Lists Don’t Benefit from Locality:
+
+| Feature                   | Linked List Limitation                                                                                |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Non-contiguous memory** | Nodes are scattered in memory, not sequential.                                                        |
+| **Cache inefficiency**    | CPUs cache data in blocks. Since list nodes aren't next to each other, CPU cache misses happen often. |
+| **Pointer chasing**       | Each access requires following a pointer, which adds overhead and breaks locality.                    |
+
+---
+
+### ✅ In Contrast: Arrays
+
+* Stored in **contiguous blocks**
+* Accessing `arr[i]` likely loads nearby values (`arr[i+1]`, etc.) into the **CPU cache**
+* Much **faster in real-world performance** when traversing
+
+---
+
+### 💡 Conclusion
+
+🔹 **Linked Lists** are flexible for insertion/deletion,
+but
+🔹 **Arrays** are much faster for traversal/access due to **locality of reference** and **better cache performance**.
