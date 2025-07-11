@@ -303,3 +303,196 @@ Let me know if you want to:
 * Return results in sorted order (default is DFS order)
 
 ---
+
+## ✅ Problem: Rat in a Maze (Find All Paths)
+
+### 🔹 Statement:
+
+Given a **`n x n` binary matrix `maze`**, a rat starts from the top-left cell `(0, 0)` and wants to reach the bottom-right cell `(n-1, n-1)`.
+
+* The rat can **move in 4 directions**: Down, Left, Right, Up.
+* It can only **move through cells containing 1** (open path).
+* **Find all possible paths** from source to destination, and return them as strings of directions (like `"DRRD"`).
+
+> You may not revisit any cell in the same path.
+
+---
+
+## 🔸 Example:
+
+### Input:
+
+```cpp
+maze = {
+    {1, 0, 0, 0},
+    {1, 1, 0, 1},
+    {1, 1, 0, 0},
+    {0, 1, 1, 1}
+}
+```
+
+### Output:
+
+```
+[DRDDRR]
+```
+
+---
+
+## 💡 Brute Force (Conceptual)
+
+Explore all 4 directions from each cell using DFS:
+
+* At each step, try going in **Down, Left, Right, Up**.
+* Keep track of current path in a string.
+* Block revisiting by marking the cell temporarily as `0`.
+* Backtrack and unmark after exploring.
+
+---
+
+## ✅ Optimized Backtracking Approach (Your Code)
+
+### 🔹 Idea:
+
+* Start from `(0, 0)` and explore using recursion.
+* For each direction, check if the move is **safe**.
+* Mark the cell as visited → recurse → backtrack.
+
+---
+
+### 🔹 Code Highlights:
+
+```cpp
+// Moves: D, L, R, U
+int dx[4] = {+1, +0, +0, -1};     // Row change
+int dy[4] = {+0, -1, +1, +0};     // Column change
+char dir[4] = {'D', 'L', 'R', 'U'};
+```
+
+Instead of writing 4 separate `if` conditions:
+
+```cpp
+if (isSafe(i+1, j)) { ... } // Down
+if (isSafe(i, j-1)) { ... } // Left
+...
+```
+
+You can loop through a direction array:
+
+```cpp
+for (int k = 0; k < 4; k++) {
+    int new_i = i + dx[k];
+    int new_j = j + dy[k];
+    if (isSafe(new_i, new_j, maze)) {
+        ...
+    }
+}
+```
+
+✅ This makes code:
+
+* Shorter
+* Scalable to 8 directions (for grid problems)
+* Easier to debug or change move order
+
+---
+
+### 🔹 Recursive Function:
+
+```cpp
+void getPossiblePathsUtil(int i, int j, vector<vector<int>> &maze, 
+                          string &currPath, vector<string> &result) {
+    if (i == maze.size() - 1 && j == maze[i].size() - 1) {
+        result.push_back(currPath);
+        return;
+    }
+
+    maze[i][j] = 0;  // Mark as visited
+
+    for (int k = 0; k < 4; k++) {
+        int new_i = i + dx[k];
+        int new_j = j + dy[k];
+
+        if (isSafe(new_i, new_j, maze)) {
+            currPath.push_back(dir[k]);
+            getPossiblePathsUtil(new_i, new_j, maze, currPath, result);
+            currPath.pop_back();  // Backtrack
+        }
+    }
+
+    maze[i][j] = 1;  // Unmark (backtrack)
+}
+```
+
+---
+
+### 🔹 Wrapper Function:
+
+```cpp
+vector<string> getPossiblePaths(vector<vector<int>> maze) {
+    vector<string> result;
+    string currPath = "";
+    getPossiblePathsUtil(0, 0, maze, currPath, result);
+    return result;
+}
+```
+
+---
+
+## ✅ Time and Space Complexity
+
+| Complexity | Value          | Explanation                                         |
+| ---------- | -------------- | --------------------------------------------------- |
+| Time       | `O(4 ^ (n^2))` | Each cell explores 4 directions, `n^2` cells total  |
+| Space      | `O(n^2)`       | Due to recursion stack and backtracking string/path |
+
+> Worst case is exponential because it tries all possible paths in a grid.
+
+---
+
+## 🧪 Sample Test Results:
+
+### ✅ `result` – Maze with 1 valid path:
+
+```
+1
+DRDDRR
+```
+
+### ✅ `result2` – No path to destination:
+
+```
+0
+```
+
+### ✅ `result3` – Fully open 3x3 grid:
+
+```
+12
+Max path length: 6 (like DDRRRU etc.)
+```
+
+---
+
+## 🔁 Summary Table
+
+| Step       | Action                                                      |
+| ---------- | ----------------------------------------------------------- |
+| isSafe()   | Check bounds and if cell is `1`                             |
+| Marking    | Mark `maze[i][j] = 0` before recursing to avoid revisits    |
+| Backtrack  | Unmark after recursive call (`maze[i][j] = 1`)              |
+| Path Track | Append direction to `currPath`, pop it after recursion ends |
+
+---
+
+## ✅ Main Function Snippet:
+
+```cpp
+int main() {
+    vector<string> result = getPossiblePaths(...);
+    cout << result.size() << endl;
+    for (string path : result) cout << path << " ";
+}
+```
+
+---
