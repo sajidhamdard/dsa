@@ -85,3 +85,31 @@ public class LinkedList {
 * `printList()`: Prints the linked list from head to tail.
 
 ---
+
+## ✅ Time Complexities of Linked List Operations
+
+| Operation                   | Singly Linked List (SLL)                                  | Doubly Linked List (DLL)      | Array (for comparison)  |
+| --------------------------- | --------------------------------------------------------- | ----------------------------- | ----------------------- |
+| Access by index             | ❌ `O(n)`                                                  | ❌ `O(n)`                      | ✅ `O(1)`                |
+| Search                      | ❌ `O(n)`                                                  | ❌ `O(n)`                      | ✅ `O(n)`                |
+| Insert at head              | ✅ `O(1)`                                                  | ✅ `O(1)`                      | ❌ `O(n)` (shift needed) |
+| Insert at tail              | ❌ `O(n)` (without tail)  <br>✅ `O(1)` (with tail pointer) | ✅ `O(1)` (if tail is tracked) | ❌ `O(n)`                |
+| Insert at middle (by index) | ❌ `O(n)`                                                  | ❌ `O(n)`                      | ❌ `O(n)` (shift needed) |
+| Delete at head              | ✅ `O(1)`                                                  | ✅ `O(1)`                      | ❌ `O(n)` (shift needed) |
+| Delete at tail              | ❌ `O(n)` (SLL)                                            | ✅ `O(1)` (DLL with tail)      | ❌ `O(n)` (shift needed) |
+| Delete by value             | ❌ `O(n)`                                                  | ❌ `O(n)`                      | ❌ `O(n)`                |
+
+---
+
+## 📌 Notes
+
+* Singly Linked List has only `next` pointer, so **no backward traversal**.
+* Doubly Linked List has `prev` and `next` pointers, so **more flexible** but uses **more memory**.
+* Arrays give fast access but are **costly for insertion/deletion** in the middle or start.
+
+---
+
+### 🚀 Summary
+
+* **Use Linked Lists** if you have **frequent insertions/deletions** (especially at head/tail).
+* **Use Arrays** if you need **fast random access**.
