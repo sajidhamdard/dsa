@@ -247,3 +247,74 @@ public Node reverseList(Node head) {
 For a list `1 → 2 → 3 → 4 → null`, after reversal → `4 → 3 → 2 → 1 → null`
 
 ---
+
+
+The **Runner's Technique** (also called the **Two Pointers Technique** or **Floyd's Tortoise and Hare**) is a strategy commonly used in **linked list** and **array** problems to **traverse at different speeds** using two pointers.
+
+---
+
+### 🏃‍♂️ What is it?
+
+You use **two pointers**:
+
+* `slow` (the **tortoise**) moves **one step at a time**
+* `fast` (the **hare**) moves **two steps at a time**
+
+---
+
+### ✅ Common Use Cases:
+
+| Problem Type                            | How Runner's Technique Helps                              |
+| --------------------------------------- | --------------------------------------------------------- |
+| **Find middle of linked list**          | When `fast` reaches end, `slow` is in the middle          |
+| **Detect cycle in linked list**         | If there's a loop, `fast` will meet `slow`                |
+| **Check for palindrome in linked list** | Find middle, then reverse second half                     |
+| **Reordering linked list**              | Find middle, reverse second half, merge both              |
+| **Nth node from end**                   | Move `fast` N steps, then move both until `fast` hits end |
+
+---
+
+### 🧠 Example: Find middle node
+
+```java
+public ListNode middleNode(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    return slow;
+}
+```
+
+---
+
+### 🧠 Example: Detect cycle
+
+```java
+public boolean hasCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if (slow == fast) return true;
+    }
+
+    return false;
+}
+```
+
+---
+
+### 🔁 Summary:
+
+* ✅ **Efficient**: Usually `O(n)` time and `O(1)` space.
+* ✅ Used in **cycle detection**, **middle finding**, **reverse merge**, etc.
+* ✅ Helps avoid extra passes over the data.
+
+---
