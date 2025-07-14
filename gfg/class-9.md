@@ -188,3 +188,62 @@ This is **well utilized by arrays**, which are stored in **contiguous memory blo
 🔹 **Linked Lists** are flexible for insertion/deletion,
 but
 🔹 **Arrays** are much faster for traversal/access due to **locality of reference** and **better cache performance**.
+
+
+---
+
+### ✅ 1. Iterative Approach (Most common & efficient)
+
+#### **Java Code:**
+
+```java
+public Node reverseList(Node head) {
+    Node prev = null;
+    Node curr = head;
+
+    while (curr != null) {
+        Node nextTemp = curr.next; // store next
+        curr.next = prev;          // reverse current node
+        prev = curr;               // move prev and curr one step forward
+        curr = nextTemp;
+    }
+
+    return prev; // new head
+}
+```
+
+#### 📌 Time Complexity: `O(n)`
+
+#### 📌 Space Complexity: `O(1)`
+
+---
+
+### ✅ 2. Recursive Approach
+
+#### **Java Code:**
+
+```java
+public Node reverseList(Node head) {
+    if (head == null || head.next == null) {
+        return head;
+    }
+
+    Node newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+
+    return newHead;
+}
+```
+
+#### 📌 Time Complexity: `O(n)`
+
+#### 📌 Space Complexity: `O(n)` (due to call stack)
+
+---
+
+### ✅ Example:
+
+For a list `1 → 2 → 3 → 4 → null`, after reversal → `4 → 3 → 2 → 1 → null`
+
+---
