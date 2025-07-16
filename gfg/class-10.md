@@ -421,3 +421,64 @@ public class LinkedListCycleOperations {
    * **Inbuilt Stack Classes:** Safe and recommended for use (like `Stack` in Java or Python's list with stack methods).
 
 ---
+
+### ✅ **What is a Dynamic Array?**
+
+A **dynamic array** is a data structure that:
+
+* Stores elements in a **contiguous block of memory** (like a regular array),
+* But can **grow** or **shrink** in size **dynamically** during runtime.
+
+---
+
+### ✅ **How it differs from a normal (static) array:**
+
+| Feature           | Static Array           | Dynamic Array                       |
+| ----------------- | ---------------------- | ----------------------------------- |
+| Size              | Fixed at creation      | Grows/shrinks automatically         |
+| Memory Allocation | Once, at the beginning | Resize + copy if full               |
+| Insertion Cost    | O(1) (if space)        | Amortized O(1)                      |
+| Example Languages | C (with `int arr[10]`) | Java (`ArrayList`), Python (`list`) |
+
+---
+
+### 🔧 **How it works (behind the scenes):**
+
+1. **Start with a small fixed-size array** (e.g., size = 2).
+2. When it gets full and you try to `add`:
+
+   * Allocate **new larger array** (typically double the size).
+   * **Copy all elements** to the new array.
+   * Add the new element.
+
+   ➤ This makes most insertions **O(1)**, but occasionally **O(n)** when resizing happens.
+
+---
+
+### ✅ **Benefits:**
+
+* Easy to use — no need to know size ahead of time.
+* Fast random access (like normal arrays).
+* Automatically handles growth.
+
+---
+
+### ❌ **Drawbacks:**
+
+* Occasional cost of resizing and copying.
+* Memory overhead (extra capacity reserved).
+
+---
+
+### 🧠 **Common Implementations:**
+
+* **Java:** `ArrayList`
+* **Python:** `list` (internally dynamic)
+* **C++:** `vector`
+* **JavaScript:** Arrays are dynamic by default
+
+---
+
+### 📌 Summary:
+
+> A **dynamic array** behaves like a regular array but **automatically resizes** itself when needed, making it a flexible and efficient structure for storing a growing list of items.
