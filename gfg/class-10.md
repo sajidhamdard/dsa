@@ -396,3 +396,28 @@ public class LinkedListCycleOperations {
 | Remove cycle     | O(n) | O(1)  | Special handling if cycle starts at head |
 
 ---
+
+### 🔁 Stack – Summary:
+
+1. **LIFO (Last In First Out):**
+   The last element added is the first one to be removed.
+
+2. **Real-life Example:**
+
+   * Stack of plates: Add on top, remove from top.
+
+3. **Major Operations:**
+
+   * **Push:** Add element to the top.
+   * **Pop:** Remove the top element.
+   * **Peek / Top:** Look at the top element without removing it.
+   * **size():** Returns number of elements in the stack.
+   * **isEmpty:** Checks if the stack is empty.
+
+4. **Implementation Options:**
+
+   * **Arrays:** Faster, uses fixed size; good when size is known.
+   * **Linked List:** Dynamic size; good when size is unknown.
+   * **Inbuilt Stack Classes:** Safe and recommended for use (like `Stack` in Java or Python's list with stack methods).
+
+---
