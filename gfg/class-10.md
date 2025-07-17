@@ -482,3 +482,200 @@ A **dynamic array** is a data structure that:
 ### 📌 Summary:
 
 > A **dynamic array** behaves like a regular array but **automatically resizes** itself when needed, making it a flexible and efficient structure for storing a growing list of items.
+
+---
+
+### 🔍 Problem (Non-Circular):
+
+Given an array, for each element, find the **next greater element to its right**. If none, return `-1`.
+
+---
+
+### 🚫 Brute Force Approach
+
+**Logic**: For each element, scan to the right and find the first greater element.
+
+```java
+// TC: O(n^2), SC: O(1)
+for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+        if (arr[j] > arr[i]) {
+            result[i] = arr[j];
+            break;
+        }
+    }
+    // if no break happens, assign -1
+}
+```
+
+### ❌ Drawbacks:
+
+* **Inefficient** for large arrays (O(n²))
+* Repeated comparisons
+* Poor performance in interviews / coding tests
+
+---
+
+### ✅ Optimized Approach (Monotonic Stack)
+
+**Idea**:
+
+* Traverse **from right to left**
+* Use a **stack** to maintain a decreasing sequence
+* For each element:
+
+  * Pop all smaller elements (they can't be "next greater")
+  * The top of the stack (if any) is the **next greater**
+  * Push current element to stack
+
+---
+
+### ✅ Java Conversion
+
+```java
+import java.util.*;
+
+public class NextGreaterElement {
+    
+    // TC: O(n), SC: O(n)
+    public static int[] nextGreaterElements(int[] arr) {
+        int n = arr.length;
+        int[] result = new int[n];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            // Pop smaller or equal elements
+            while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+                stack.pop();
+            }
+
+            result[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(arr[i]);
+        }
+
+        return result;
+    }
+
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        printArray(nextGreaterElements(new int[]{5, 3, 6, 4, 2, 3, 9, 10}));
+        printArray(nextGreaterElements(new int[]{1, 2, 3, 4}));
+        printArray(nextGreaterElements(new int[]{4, 3, 2, 1}));
+        printArray(nextGreaterElements(new int[]{5, 4, 3, 2, 1, 10}));
+    }
+}
+```
+
+---
+
+### 💡 Output Explanation
+
+#### Input: `[5, 3, 6, 4, 2, 3, 9, 10]`
+
+* Output: `[6, 6, 9, 9, 3, 9, 10, -1]`
+
+#### Input: `[1, 2, 3, 4]`
+
+* Output: `[2, 3, 4, -1]`
+
+#### Input: `[4, 3, 2, 1]`
+
+* Output: `[-1, -1, -1, -1]`
+
+#### Input: `[5, 4, 3, 2, 1, 10]`
+
+* Output: `[10, 10, 10, 10, 10, -1]`
+
+---
+
+### Summary
+
+| Approach        | Time Complexity | Space Complexity | Notes                      |
+| --------------- | --------------- | ---------------- | -------------------------- |
+| Brute Force     | O(n²)           | O(1)             | Simple but inefficient     |
+| Monotonic Stack | O(n)            | O(n)             | Best choice for interviews |
+
+---
+
+## 🔁 Why We Traverse **Right to Left**
+
+In the **Next Greater Element (non-circular)** problem, for each element, we want to find the **first greater element to its right**.
+
+So if you process from **left to right**, for each element, you’d have to **look ahead**, which leads to brute-force logic (nested loop = `O(n²)`).
+
+### 👉 Instead, going from **right to left**:
+
+* You’ve **already processed** elements to the right.
+* You maintain a **stack** of possible “next greater” candidates.
+* So in **one pass**, you can solve it using a **monotonic stack** efficiently.
+
+---
+
+## 📚 What is a Monotonic Stack?
+
+A **monotonic stack** is a stack that is **always in sorted order (increasing or decreasing)** from top to bottom.
+
+There are two types:
+
+### 1. **Monotonic Decreasing Stack**
+
+* Each new element you push is **less than or equal to** the element below it.
+* Used to find the **next greater element**.
+
+### 2. **Monotonic Increasing Stack**
+
+* Each new element you push is **greater than or equal to** the element below it.
+* Used to find the **next smaller element**.
+
+---
+
+## 🧠 In This Problem (Next Greater Element)
+
+We use a **monotonic decreasing stack**:
+
+* We want the next **greater** element.
+* So we **remove** all smaller elements (they’re useless).
+* The element at the top of the stack will be the **next greater** one.
+
+---
+
+### 🔄 Step-by-Step Example
+
+Input: `[2, 1, 3]`
+Process from right to left.
+
+```
+Stack: []
+i = 2 → result[2] = -1 → push 3 → Stack = [3]
+i = 1 → 3 > 1 → result[1] = 3 → push 1 → Stack = [3,1]
+i = 0 → 1 < 2 → pop 1 → 3 > 2 → result[0] = 3 → push 2 → Stack = [3,2]
+```
+
+Output: `[3, 3, -1]`
+
+---
+
+## ✅ Benefits of Monotonic Stack
+
+* **O(n) time**, since each element is pushed and popped at most once.
+* Elegant and **widely used** in:
+
+  * Next greater/smaller element
+  * Histogram problems
+  * Sliding window maxima
+
+---
+
+## 🧭 Summary
+
+| Concept              | Why it's used here                                             |
+| -------------------- | -------------------------------------------------------------- |
+| **Right to left**    | So we have "future" elements already in the stack              |
+| **Monotonic stack**  | Efficient way to find next greater by popping useless elements |
+| **Decreasing stack** | Helps find the next **greater** element to the right           |
