@@ -424,3 +424,88 @@ Here's a **comparison table** showing the **time complexities** of **queue opera
 * **Java `LinkedList` / `ArrayDeque`**: Best for production-ready queue operations.
 
 ---
+
+
+## ✅ Stack using One Queue
+
+### 💡 Goal:
+
+Simulate **LIFO (stack)** behavior using **FIFO (queue)** operations only.
+
+---
+
+### 🔁 Core Idea (Rotation Trick):
+
+When you `push(x)` into the queue:
+
+1. Add `x` to the queue.
+2. Rotate the queue by removing all elements before `x` and adding them back at the end.
+3. This makes `x` the **front** of the queue — simulating stack top.
+
+---
+
+### 🧠 Example Flow:
+
+```java
+push(1) → queue: [1]
+push(2) → add 2 → [1, 2] → rotate → [2, 1]
+push(3) → add 3 → [2, 1, 3] → rotate → [3, 2, 1]
+```
+
+Now:
+
+* `pop()` → 3
+* `top()` → 3
+* `pop()` → 2
+* etc.
+
+---
+
+### ✅ Java Code:
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+class MyStack {
+    private Queue<Integer> queue;
+
+    public MyStack() {
+        queue = new LinkedList<>();
+    }
+
+    public void push(int x) {
+        queue.add(x);
+        int size = queue.size();
+        // Rotate previous elements behind the new one
+        while (size-- > 1) {
+            queue.add(queue.poll());
+        }
+    }
+
+    public int pop() {
+        return queue.poll(); // Always returns the most recently pushed element
+    }
+
+    public int top() {
+        return queue.peek();
+    }
+
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}
+```
+
+---
+
+### ⏱️ Time Complexity:
+
+| Operation | Time                   |
+| --------- | ---------------------- |
+| `push()`  | O(n) — due to rotation |
+| `pop()`   | O(1)                   |
+| `top()`   | O(1)                   |
+| `empty()` | O(1)                   |
+
+---
