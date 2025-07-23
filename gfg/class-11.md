@@ -396,3 +396,31 @@ public class MyQueue {
   (Each element is moved from `stack1` to `stack2` at most once)
 
 ---
+
+Here's a **comparison table** showing the **time complexities** of **queue operations** (`enqueue`, `dequeue`, and `peek`) based on **different underlying data structures** used to implement a queue:
+
+---
+
+### ✅ Queue Implementations and Their Time Complexities
+
+| Implementation Type        | Enqueue (Add/Push) | Dequeue (Remove) | Peek (Front)   | Notes                                                           |
+| -------------------------- | ------------------ | ---------------- | -------------- | --------------------------------------------------------------- |
+| **Array (Static)**         | O(1)               | O(n)             | O(1)           | Dequeue requires shifting all elements after front              |
+| **Dynamic Array**          | Amortized O(1)     | O(n)             | O(1)           | Similar shifting issue as static arrays, resizing adds overhead |
+| **Singly Linked List**     | O(1) (at tail)     | O(1) (from head) | O(1)           | Efficient if tail and head pointers are maintained              |
+| **Doubly Linked List**     | O(1)               | O(1)             | O(1)           | Extra memory due to backward pointers                           |
+| **Two Stacks**             | O(1)               | Amortized O(1)   | Amortized O(1) | Uses two stacks; `dequeue` may trigger stack transfer           |
+| **Java's LinkedList**      | O(1)               | O(1)             | O(1)           | Implements `Deque`; efficient for queue ops                     |
+| **Circular Queue (Array)** | O(1)               | O(1)             | O(1)           | No shifting; uses front & rear indices                          |
+
+---
+
+### 📌 Summary:
+
+* **Array (Static or Dynamic)**: Easy but inefficient for dequeue due to shifting.
+* **Linked List**: Efficient and dynamic; no shifting or resizing.
+* **Two Stacks**: Good trick to implement queue using stack behavior.
+* **Circular Queue**: Optimal for fixed-size queues.
+* **Java `LinkedList` / `ArrayDeque`**: Best for production-ready queue operations.
+
+---
