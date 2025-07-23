@@ -299,3 +299,100 @@ dq.removeLast();   // removes 2
 * Undo/Redo functionality
 
 ---
+
+To implement a **queue using two stacks**, you simulate the **FIFO** (First-In-First-Out) behavior of a queue using the **LIFO** (Last-In-First-Out) behavior of stacks.
+
+### ✅ Concept:
+
+Use two stacks:
+
+* `stack1` → used for **enqueue (push)** operations.
+* `stack2` → used for **dequeue (pop/peek)** operations.
+
+#### Operations:
+
+1. **Enqueue (push)**:
+
+   * Simply push the element into `stack1`.
+
+2. **Dequeue (pop)**:
+
+   * If `stack2` is empty, move all elements from `stack1` to `stack2` (this reverses the order).
+   * Then pop from `stack2`.
+
+3. **Peek**:
+
+   * Same as pop, but return the top without removing it.
+
+4. **Empty**:
+
+   * Return true if both stacks are empty.
+
+---
+
+### ✅ Java Implementation:
+
+```java
+import java.util.Stack;
+
+public class MyQueue {
+    private Stack<Integer> stack1;
+    private Stack<Integer> stack2;
+
+    public MyQueue() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+    }
+
+    // Push element to the back of queue
+    public void push(int x) {
+        stack1.push(x);
+    }
+
+    // Removes the element from in front of queue and returns that element
+    public int pop() {
+        moveStack1ToStack2IfNeeded();
+        return stack2.pop();
+    }
+
+    // Get the front element
+    public int peek() {
+        moveStack1ToStack2IfNeeded();
+        return stack2.peek();
+    }
+
+    // Return whether the queue is empty
+    public boolean empty() {
+        return stack1.isEmpty() && stack2.isEmpty();
+    }
+
+    // Helper method to shift elements from stack1 to stack2 if needed
+    private void moveStack1ToStack2IfNeeded() {
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+    }
+
+    // For demonstration
+    public static void main(String[] args) {
+        MyQueue queue = new MyQueue();
+        queue.push(1);
+        queue.push(2);
+        System.out.println(queue.peek()); // 1
+        System.out.println(queue.pop());  // 1
+        System.out.println(queue.empty()); // false
+    }
+}
+```
+
+---
+
+### 🧠 Time Complexity:
+
+* **Push**: `O(1)`
+* **Pop/Peek**: Amortized `O(1)`
+  (Each element is moved from `stack1` to `stack2` at most once)
+
+---
