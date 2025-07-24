@@ -509,3 +509,59 @@ class MyStack {
 | `empty()` | O(1)                   |
 
 ---
+
+## ✅ Reverse a queue
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ReverseQueue {
+
+    // TC: O(n), SC: O(n) due to recursion stack
+    public static void reverse(Queue<Integer> queue) {
+        if (queue.isEmpty()) {
+            return;
+        }
+
+        int front = queue.poll();  // Remove front element
+        reverse(queue);            // Recursively reverse the remaining queue
+        queue.add(front);          // Add current element to the rear
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+
+        reverse(q);  // Reverses the queue
+
+        while (!q.isEmpty()) {
+            System.out.print(q.poll() + " ");
+        }
+    }
+}
+```
+
+---
+
+## ✅ Logic (Short Explanation):
+
+1. **Base Case**: If the queue is empty, stop recursion.
+2. **Recursive Step**:
+
+   * Remove the front element and store it.
+   * Recursively reverse the rest of the queue.
+   * After recursion returns, insert the removed element at the **rear**.
+3. This reverses the queue because:
+
+   * The first element removed will be added **last**, and so on — reversing the order.
+
+---
+
+### 🧠 Example:
+
+Input queue: `1 2 3 4`
+Recursion unfolds → Adds `1` at the end → Result: `4 3 2 1`
