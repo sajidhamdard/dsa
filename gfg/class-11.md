@@ -565,3 +565,168 @@ public class ReverseQueue {
 
 Input queue: `1 2 3 4`
 Recursion unfolds → Adds `1` at the end → Result: `4 3 2 1`
+
+---
+
+
+Code that generates the **first `n` binary numbers in sequence**, along with a **comparison** between the **brute-force** and **optimized queue-based approach**.
+
+---
+
+## ✅ Optimized Approach using Queue
+
+```java
+import java.util.*;
+
+public class BinaryNumberGenerator {
+
+    // TC: O(n)
+    // SC: O(n * log n) because each binary string is of log(n) length
+    public static List<String> generateFirstNBinaryNumbers(int n) {
+        Queue<String> queue = new LinkedList<>();
+        List<String> result = new ArrayList<>();
+
+        queue.add("1");
+        int inserts = 1;
+
+        while (inserts < n) {
+            String curr = queue.poll();
+            result.add(curr);
+
+            queue.add(curr + "0");
+            queue.add(curr + "1");
+            inserts += 2;
+        }
+
+        while (result.size() < n) {
+            result.add(queue.poll());
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<String> res = generateFirstNBinaryNumbers(11);
+        for (String s : res) {
+            System.out.println(s);
+        }
+    }
+}
+```
+
+---
+
+## ✅ Output for `n = 11`
+
+```
+1
+10
+11
+100
+101
+110
+111
+1000
+1001
+1010
+1011
+```
+
+---
+
+## 📊 Comparison: Brute-force vs Queue Approach
+
+| Criteria             | Brute Force (Integer to Binary)                               | Queue-based BFS (Optimized)                                                         |
+| -------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Idea**             | Convert numbers from 1 to n using `Integer.toBinaryString(i)` | Use BFS-style queue, starting from "1", and generate next using "0" and "1" appends |
+| **Time Complexity**  | O(n log n) — due to binary conversion for each number         | O(n) — each element generated using string append                                   |
+| **Space Complexity** | O(n \* log n) — storing n strings                             | O(n \* log n) — storing n strings                                                   |
+| **Advantage**        | Simple and easy to code                                       | BFS-like structure simulates binary tree level order traversal                      |
+| **Drawback**         | Slower for large `n`, repeated conversions                    | Slightly more complex but more efficient generation                                 |
+
+---
+
+### ✅ Brute Force (for reference)
+
+```java
+public static List<String> bruteForceBinary(int n) {
+    List<String> res = new ArrayList<>();
+    for (int i = 1; i <= n; i++) {
+        res.add(Integer.toBinaryString(i)); //or use divide by 2 approach
+    }
+    return res;
+}
+```
+
+---
+
+## 🧠 Summary:
+
+* ✅ **Brute Force** is simple but inefficient due to conversions.
+* ✅ **Queue (BFS approach)** generates binary numbers like level-order traversal of a binary tree:
+
+  * Start with `"1"`, then `"10"`, `"11"`, then `"100"`, `"101"`, etc.
+* 🔁 Can be optimized further by using a `List<String>` as both result and queue (to reduce memory).
+
+Now you want to **optimize the binary number generator to use only O(1) extra space** — i.e., not use any extra queue or data structures beyond the result list itself.
+
+---
+
+## ✅ Idea: Use Brute Force + In-place Conversion (no queue)
+
+The **most space-efficient** approach is to:
+
+* Iterate from `1` to `n`
+* Convert each number to binary using `Integer.toBinaryString(i)`
+* Directly store the result in a list
+
+### ✅ O(1) extra space
+
+```java
+import java.util.*;
+
+public class BinaryNumberGenerator {
+
+    // TC: O(n * log n), SC: O(n * log n) for result, O(1) extra space
+    public static List<String> generateFirstNBinaryNumbers(int n) {
+        List<String> result = new ArrayList<>(n);
+        for (int i = 1; i <= n; i++) {
+            result.add(Integer.toBinaryString(i));
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<String> res = generateFirstNBinaryNumbers(11);
+        for (String s : res) {
+            System.out.println(s);
+        }
+    }
+}
+```
+
+---
+
+## ✅ Time & Space Complexity
+
+| Metric               | Value                                            |
+| -------------------- | ------------------------------------------------ |
+| **Time Complexity**  | O(n \* log n) — log n for each binary conversion |
+| **Space Complexity** | O(n \* log n) — for storing result strings       |
+| **Extra Space**      | O(1) — no auxiliary data structure like queue    |
+
+---
+
+## ⚠️ Note:
+
+* This version avoids the **queue**, which means no BFS-style generation.
+* It **does not** follow the "generate binary like binary tree" method but is **simpler and more space-efficient**.
+
+---
+
+## 🧠 Summary:
+
+| Version                 | Time       | Extra Space | Notes                                        |
+| ----------------------- | ---------- | ----------- | -------------------------------------------- |
+| Queue (BFS)             | O(n)       | O(n)        | Good for understanding binary tree traversal |
+| Brute Force (optimized) | O(n log n) | O(1)        | Most efficient in memory                     |
