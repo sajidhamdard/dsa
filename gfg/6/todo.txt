@@ -1,0 +1,4 @@
+1. Check if subarray with sum = target is present.
+2. Find any subarray with sum = 0. (return [start, end] index of any subarray).
+3. Find any subarray with sum = target. (return [start, end] index of any subarray).
+4. Find the number of subarrays with sum = target.
