@@ -493,3 +493,99 @@ During traversal:
 | General Tree   | Max width (w)        | O(w)      |
 
 ---
+
+
+## ✅ What is “Level-by-Level Order Traversal”?
+
+It means printing **each level of the binary tree on a separate line**.
+
+### 🔹 Example Tree:
+
+```
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+```
+
+### 🔹 Output (Level-by-Level):
+
+```
+1
+2 3
+4 5 6
+```
+
+---
+
+## ✅ Java Code Using Queue + Level Size
+
+```java
+import java.util.*;
+
+public class LevelOrderByLevel {
+
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+        TreeNode(int val) { this.val = val; }
+    }
+
+    public static void levelOrderByLevel(TreeNode root) {
+        if (root == null) return;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+
+        while (!q.isEmpty()) {
+            int levelSize = q.size(); // Number of nodes at current level
+
+            // Traverse the current level
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode curr = q.poll();
+                System.out.print(curr.val + " ");
+
+                if (curr.left != null) q.offer(curr.left);
+                if (curr.right != null) q.offer(curr.right);
+            }
+            System.out.println(); // Newline after each level
+        }
+    }
+
+    public static void main(String[] args) {
+        // Sample tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        levelOrderByLevel(root);
+    }
+}
+```
+
+---
+
+## 🧠 How It Works (Dry Run):
+
+* Start with root → `queue = [1]`
+* While queue is not empty:
+
+  * `levelSize = queue.size()` → how many nodes to process now
+  * Process `levelSize` nodes → print them and enqueue their children
+  * After that level, `System.out.println()` starts the next level on a new line
+
+---
+
+## ✅ Time & Space Complexity
+
+| Metric                                                   | Value |
+| -------------------------------------------------------- | ----- |
+| Time                                                     | O(n)  |
+| Space (Queue)                                            | O(w)  |
+| Where `n` = total nodes, and `w` = max width of the tree |       |
+
+---
