@@ -430,3 +430,66 @@ public class LevelOrderTraversal {
 > where `n` is the number of nodes in the tree
 
 ---
+
+### ✅ Level Order Traversal — Auxiliary Space (Space Complexity)
+
+Level Order Traversal uses a **Queue** (BFS approach), so its **auxiliary space** depends on:
+
+---
+
+## 🔹 Space Complexity = O(w)
+
+Where:
+
+* `w` = **maximum width** of the binary tree
+* That is, **maximum number of nodes at any level**
+
+---
+
+## 🔍 Why?
+
+During traversal:
+
+* At each level, we enqueue all the children of the current level.
+* So, at most, the queue will hold **all nodes of the widest level**.
+
+---
+
+## 🧠 Realistic Examples:
+
+### 1. **Perfect Binary Tree**
+
+* A perfect binary tree with `n` nodes has:
+
+  * Height `h = log₂(n + 1)`
+  * Max width = `n / 2` (last level)
+
+➡️ So **auxiliary space = O(n)** in worst case.
+
+---
+
+### 2. **Skewed Tree (e.g., all nodes on one side)**
+
+```
+    1
+     \
+      2
+       \
+        3
+```
+
+* Max width = 1
+* Queue holds 1 node at any point
+  ➡️ So **aux space = O(1)**
+
+---
+
+### ✅ Summary
+
+| Tree Type      | Max Queue Size       | Aux Space |
+| -------------- | -------------------- | --------- |
+| Perfect Binary | Half of nodes (≈n/2) | O(n)      |
+| Skewed Tree    | 1                    | O(1)      |
+| General Tree   | Max width (w)        | O(w)      |
+
+---
