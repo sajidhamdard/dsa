@@ -285,3 +285,62 @@ node3.children.add(node6);
 | Trie Tree   | Specialized n-ary tree for strings/words |
 
 ---
+
+```java
+public class TreeTraversal {
+
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+    // Traversals
+    void preorder(TreeNode root) {
+        if (root == null) return;
+        System.out.print(root.val + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
+
+    void inorder(TreeNode root) {
+        if (root == null) return;
+        inorder(root.left);
+        System.out.print(root.val + " ");
+        inorder(root.right);
+    }
+
+    void postorder(TreeNode root) {
+        if (root == null) return;
+        postorder(root.left);
+        postorder(root.right);
+        System.out.print(root.val + " ");
+    }
+
+    public static void main(String[] args) {
+        TreeTraversal t = new TreeTraversal();
+
+        // Building the tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        System.out.print("Preorder: ");
+        t.preorder(root); // 1 2 4 5 3
+        System.out.println();
+
+        System.out.print("Inorder: ");
+        t.inorder(root); // 4 2 5 1 3
+        System.out.println();
+
+        System.out.print("Postorder: ");
+        t.postorder(root); // 4 5 2 3 1
+        System.out.println();
+    }
+}
+```
