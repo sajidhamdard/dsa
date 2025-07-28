@@ -1,0 +1,4 @@
+0. Given an array, k, sum -> find if there is a set of k-elements summing up to `sum`.
+1. Find the sqrt till 1st decimal -> extend it till k-th precision.
+2. Find the pivot (smallest element) in a sorted rotated array.
+3. Painter's Partition Problem.
