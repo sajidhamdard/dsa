@@ -730,3 +730,65 @@ public class BinaryNumberGenerator {
 | ----------------------- | ---------- | ----------- | -------------------------------------------- |
 | Queue (BFS)             | O(n)       | O(n)        | Good for understanding binary tree traversal |
 | Brute Force (optimized) | O(n log n) | O(1)        | Most efficient in memory                     |
+
+---
+
+In LeetCode problems, when they mention a **"stream of characters"**, it typically means:
+
+---
+
+### ✅ **A sequence of characters that comes one by one over time**, rather than being given all at once.
+
+Think of it like this:
+
+> You're reading characters **as they arrive**, not as a full string.
+
+---
+
+### 🧠 Examples of problems with character streams:
+
+1. **[Design Stream Checker](https://leetcode.com/problems/stream-of-characters/)**
+
+   * You're given one character at a time via `query(char letter)`, and you must decide whether the current stream forms a word from a dictionary.
+
+2. **[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)**
+
+   * While not explicitly a stream, it **can be thought of as reading a stream** and maintaining a window of unique characters.
+
+---
+
+### 🔄 Analogy:
+
+If a string is:
+
+```text
+"abcde"
+```
+
+* In normal problems, you're given `"abcde"` as a full input.
+* In **stream problems**, you receive:
+
+  * `'a'`
+  * then `'b'`
+  * then `'c'` … and so on
+
+You may be asked to process or make decisions **after each character arrives**, as if it’s **streaming live data** (like from a keyboard, network, or file).
+
+---
+
+### 🔧 You Might Need To:
+
+* Maintain a buffer or queue of the last **k characters**
+* Use Trie or HashSet for prefix/suffix matching
+* Update your result **incrementally**
+
+---
+
+### 📦 Common use-cases:
+
+* Autocomplete systems
+* Spell checkers
+* Live pattern matching
+* Realtime log scanning
+
+---
