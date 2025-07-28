@@ -948,3 +948,108 @@ public class StreamFirstNonRepeating {
 ```
 
 ---
+
+## 🔷 Problem: Sliding Window Maximum
+
+**Given** an array `arr[]` of integers and an integer `k`, your task is to find the maximum value for each contiguous subarray of size `k`.
+
+**Return** an array of these maximum values.
+
+---
+
+### 📝 Function Signature:
+
+```java
+public List<Integer> slidingWindowMax(int[] arr, int k)
+```
+
+---
+
+### 📘 Constraints:
+
+* 1 ≤ `k` ≤ `arr.length`
+* Elements in `arr` can be positive, negative, or zero.
+
+---
+
+## 💡 Example 1:
+
+```
+Input:  arr = [1, 2, 3, 1, 4, 5, 2, 3, 6], k = 3  
+Output: [3, 3, 4, 5, 5, 5, 6]
+```
+
+---
+
+## 🔍 Brute Force Approach
+
+### 🔸 Logic:
+
+* For each window of size `k`, loop through and find the max.
+* Slide the window one element at a time.
+
+### ⏱️ Time Complexity: O(n \* k)
+
+### ❌ Not optimal for large `n`
+
+---
+
+## ✅ Optimized Approach (Using Deque)
+
+### 🔸 Logic:
+
+* Use a **deque** to store indices of useful elements in current window.
+* Always maintain the **max element at the front** of the deque.
+* Remove elements that:
+
+  * Are **out of the current window**.
+  * Are **smaller** than the current element (not useful anymore).
+
+### ⏱️ Time Complexity: O(n)
+
+### 🧠 Space Complexity: O(k)
+
+---
+
+## ✅ Java Implementation:
+
+```java
+import java.util.*;
+
+public class SlidingWindow {
+
+    public static List<Integer> slidingWindowMax(int[] arr, int k) {
+        List<Integer> result = new ArrayList<>();
+        Deque<Integer> dq = new ArrayDeque<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            // Remove elements out of window
+            while (!dq.isEmpty() && dq.peekFirst() <= i - k) {
+                dq.pollFirst();
+            }
+
+            // Remove smaller elements from the back
+            while (!dq.isEmpty() && arr[i] >= arr[dq.peekLast()]) {
+                dq.pollLast();
+            }
+
+            dq.offerLast(i);
+
+            // Start recording max from the k-th element
+            if (i >= k - 1) {
+                result.add(arr[dq.peekFirst()]);
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(slidingWindowMax(new int[]{1, 2, 3, 1, 4, 5, 2, 3, 6}, 3)); // [3, 3, 4, 5, 5, 5, 6]
+        System.out.println(slidingWindowMax(new int[]{8, 5, 10, 7, 9, 4, 15, 12, 90, 13}, 4)); // [10, 10, 10, 15, 15, 90, 90]
+        System.out.println(slidingWindowMax(new int[]{5, 1, 3, 4, 2, 6}, 1)); // [5, 1, 3, 4, 2, 6]
+    }
+}
+```
+
+---
