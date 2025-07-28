@@ -792,3 +792,159 @@ You may be asked to process or make decisions **after each character arrives**, 
 * Realtime log scanning
 
 ---
+
+## 🔷 Problem: First Non-Repeating Character in a Stream of Characters
+
+Given an input stream `s` consisting only of lowercase alphabets. While reading characters from the stream, you have to tell which character has appeared **only once** in the stream up to that point.
+
+If there are multiple characters that have appeared only once, you must return **the one that appeared first** among them.
+
+If there is **no non-repeating character**, append `'#'` to the result.
+
+---
+
+### 📝 Note:
+
+1. You need to find the answer for every `i` (0 ≤ i < n).
+2. To find the answer for index `i`, consider the stream from index `0` to index `i` inclusive.
+
+---
+
+### 🔸 Function Signature:
+
+```java
+public String firstNonRepeating(String s);
+```
+
+---
+
+### 💡 Examples:
+
+#### Example 1:
+
+```
+Input:  s = "aabc"
+Output: "a#bb"
+
+Explanation:
+Step 0: "a"    → first non-repeating = 'a'  
+Step 1: "aa"   → no non-repeating    → '#'  
+Step 2: "aab"  → first non-repeating = 'b'  
+Step 3: "aabc" → first non-repeating = 'b'  
+```
+
+#### Example 2:
+
+```
+Input:  s = "zz"
+Output: "z#"
+
+Explanation:
+Step 0: "z"  → first non-repeating = 'z'  
+Step 1: "zz" → all characters repeated → '#'  
+```
+
+---
+
+### 🔸 Input:
+
+* A string `stream` (1 ≤ stream.length() ≤ 10⁵) — a sequence of lowercase letters
+
+### 🔸 Output:
+
+* A string where each character represents the first non-repeating character at that point in the stream (or `#` if none exists)
+
+---
+
+### 🔍 Example 1:
+
+```
+Input:  "aabc"
+Output: "a#bb"
+```
+
+### 🔍 Example 2:
+
+```
+Input:  "bcbdcd"
+Output: "bbbb##"
+```
+
+---
+
+## 🧠 Brute Force Approach
+
+### ✅ Idea:
+
+For every character in the stream:
+
+* Check all previous characters to find the first one with frequency = 1.
+
+### ❌ Time Complexity:
+
+* O(n²), since checking previous characters can take O(n) per index.
+
+---
+
+## ✅ Optimized Approach (Using Queue)
+
+### 🔹 Idea:
+
+* Maintain a `Queue<Character>` to store potential non-repeating characters.
+* Keep a frequency map (`int[26]`) to track how many times each character has occurred.
+* After processing each character:
+
+  * Add it to the queue (if it's the first time).
+  * Remove characters from the front of the queue while they are repeated.
+  * Append the front of the queue to the result (or `#` if queue is empty).
+
+### ✅ Time Complexity: O(n)
+
+### ✅ Space Complexity: O(1) → 26 letters + queue
+
+---
+
+## ✅ Java Implementation:
+
+```java
+import java.util.*;
+
+public class StreamFirstNonRepeating {
+
+    public static String firstNonRepeating(String stream) {
+        int[] freq = new int[26];
+        Queue<Character> q = new LinkedList<>();
+        StringBuilder res = new StringBuilder();
+
+        for (char ch : stream.toCharArray()) {
+            freq[ch - 'a']++;
+
+            if (freq[ch - 'a'] == 1) {
+                q.offer(ch);
+            }
+
+            while (!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
+                q.poll();
+            }
+
+            if (q.isEmpty()) {
+                res.append('#');
+            } else {
+                res.append(q.peek());
+            }
+        }
+
+        return res.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(firstNonRepeating("aabc"));     // a#bb
+        System.out.println(firstNonRepeating("bcbdcd"));   // bbb##
+        System.out.println(firstNonRepeating("aaaa"));     // a###
+        System.out.println(firstNonRepeating("abcd"));     // aaaaa
+        System.out.println(firstNonRepeating("a"));        // a
+    }
+}
+```
+
+---
